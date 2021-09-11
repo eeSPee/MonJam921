@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TimeEnemy : TimeCritter
 {
+    public float MoveSpeed = 1f;
     public bool FaceRight = true;
     bool OriginalFacing = true;
-    bool Walking = true;
+    protected bool Walking = true;
+    protected float stunTime = 0;
     public override void TimeImprint()
     {
         base.TimeImprint();
@@ -17,29 +19,44 @@ public class TimeEnemy : TimeCritter
         UnDie();
         base.TimeReset();
         FaceRight = OriginalFacing;
-        Walking = true; 
+        Walking = true;
+        stunTime = 0;
         StopAllCoroutines();
     }
     private void Update()
     {
-        if (Walking && IsGrounded())
+        Vector2 velocity = rigidbody.velocity;
+
+        if (stunTime > Time.time)
         {
-            rigidbody.velocity = new Vector2(((FaceRight) ? 1 : -1) , rigidbody.velocity.y);
-        }
-    }
-    public override void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.contacts[0].point.y < transform.position.y - .45f * transform.up.y)
-        {
-            last_grounded = Time.time + .1f;
+            velocity.x = 0;
         }
         else
         {
-            if ((collision.contacts[0].point.x > transform.position.x) == FaceRight)
+            if (rigidbody.IsSleeping())
             {
-                FaceRight = !FaceRight;
+                rigidbody.WakeUp();
             }
-            
+            if (IsGrounded() && Walking)
+            {
+                velocity.x = ((FaceRight) ? 1 : -1) * MoveSpeed;
+            }
+        }
+        rigidbody.velocity = velocity;
+    }
+    public void Pause(float pausetime)
+    {
+        stunTime = Time.time+pausetime;
+    }
+    public override void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.contacts[0].point.y < transform.position.y - .45f)
+        {
+            last_grounded = Time.time + .1f;
+        }
+        else if ((FaceRight && collision.contacts[0].point.x > transform.position.x) || (!FaceRight && collision.contacts[0].point.x < transform.position.x))
+        {
+            FaceRight = !FaceRight;
         }
     }
     public void OnCollisionEnter2D(Collision2D collision)

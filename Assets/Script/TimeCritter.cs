@@ -18,7 +18,7 @@ public class TimeCritter : TimeEntity
     {
         //if (collision.gameObject.tag == "Ground")
         {
-            if (transform.position.y - .8f * transform.up.y > collision.contacts[0].point.y)
+            if (rigidbody.velocity.y<=0 && transform.position.y - .8f * transform.up.y > collision.contacts[0].point.y)
             {
                 last_grounded = Time.time + .1f;
             }

@@ -54,4 +54,30 @@ public class CloneController : PlayerController
         recordstate = 0;
         interactable = null;
     }
+    Vector2 pastvelocity = Vector2.zero;
+    public override void Delay(float t)
+    {
+        if (PauseCoroutine != null)
+        {
+            StopCoroutine(PauseCoroutine);
+            rigidbody.velocity = pastvelocity;
+            rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        }
+
+        PauseCoroutine = StartCoroutine(Pause(t));
+    }
+    Coroutine PauseCoroutine;
+    public IEnumerator Pause(float duration)
+    {
+        Debug.Log("Pause " + name + " with velocity " + rigidbody.velocity);
+        pastvelocity = rigidbody.velocity;
+        rigidbody.bodyType = RigidbodyType2D.Static;
+        yield return new WaitForSeconds(duration);
+        rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        rigidbody.velocity = pastvelocity;
+    }
+    public override bool IsOriginal()
+    {
+        return false;
+    }
 }

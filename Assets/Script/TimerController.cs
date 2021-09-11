@@ -4,31 +4,62 @@ using UnityEngine;
 
 public class TimerController : MonoBehaviour
 {
-    float gameTime = 0;
+    public static TimerController main;
+    int gameRound = 1;
+    float newGameTime = 0;
+    public int roundCount = 3;
+    public float roundTime = 30;
     List<TimeEntity> timeEntities = new List<TimeEntity>();
-    private void Start()
+    private void Awake()
     {
+        main = this;
         timeEntities.AddRange(FindObjectsOfType<TimeEntity>());
 
         PlayerController.player = GameObject.FindObjectOfType<PlayerController>();
-
-        TimeReset();
-
-        float T = 5;
-        Invoke("NewGame", T*1);
-        Invoke("NewGame", T*2);
-        Invoke("NewGame", T*3);
     }
-    public void NewGame()
+    private void Start()
+    {
+        UIManager.main.UpdateProgressBar(gameRound);
+        StartNewGame();
+    }
+    Coroutine runningTime;
+    public void StartNewGame()
+    {
+        if (runningTime!=null)
+            StopCoroutine(runningTime);
+        runningTime = StartCoroutine(HandleGameTime());
+    }
+    public IEnumerator HandleGameTime()
+    {
+        TimeReset();
+        while (GetRemainingRoundTime() < roundTime)
+            {
+            UIManager.main.UpdateTime();
+                yield return new WaitForEndOfFrame();
+        }
+        if (gameRound<=roundCount)
+        {
+            EndGameRound();
+            StartNewGame();
+        }
+    }
+    public void EndGameRound()
     {
         Debug.Log("TimeController - Reset time at "+Time.time);
         ClonePlayer(PlayerController.player);
         PlayerController.player.RewriteHistory();
-        TimeReset();
+        gameRound++;
+        UIManager.main.UpdateProgressBar(gameRound);
+    }
+    public void GameReset()
+    {
+        if (runningTime != null)
+            StopCoroutine(runningTime);
     }
     public void TimeReset()
     {
         Debug.Log("TimeController - Reset " + timeEntities.Count + " entities...");
+        newGameTime = Time.time;
         foreach (TimeEntity entity in timeEntities)
         {
             entity.TimeReset();
@@ -46,4 +77,9 @@ public class TimerController : MonoBehaviour
 
         return Controller;
     }
+    public float GetRemainingRoundTime()
+    {
+        return Time.time - newGameTime + PlayerController.player.GetDelay();
+    }
+
 }
