@@ -7,11 +7,12 @@ public class PlayerController : TimeCritter
 {
     public static PlayerController player;
 
+    bool faceRight = true;
     float hSpeed = 6;
     float airSpeed = 6;
     float JumpSpeed = 500;
-    bool registermovement = false;
-    float delay = 0;
+    public bool registermovement = false;
+    protected float delay = 0;
 
     public int playerID = 0;
     public float SpawnTime = 0;
@@ -23,7 +24,8 @@ public class PlayerController : TimeCritter
 
     protected SpriteRenderer Display;
     protected Collider2D Collision;
-    public float last_jump =-1;
+    public float last_jump = -1;
+    public float last_interact = -1;
     float slowedTime = 0;
 
     public TimeInteractable interactable;
@@ -38,7 +40,7 @@ public class PlayerController : TimeCritter
         SpawnTime = Time.time;
     }
 
-    protected virtual void Update()
+    protected virtual void HandleInput()
     {
         if (!registermovement)
             return;
@@ -57,16 +59,20 @@ public class PlayerController : TimeCritter
     }
     private void FixedUpdate()
     {
-        HandleControls();
+        HandleInput();
+        HandleMovement();
+        CarryPickup();
     }
     public float GetMovementSpeed()
     {
         return hSpeed * (IsSlowed() ? .33f : 1f);
     }
-    public void HandleControls()
+    public void HandleMovement()
     {
         if (IsGrounded())
         {
+
+            faceRight = (input.x == 0) ? faceRight : (input.x>0);
             rigidbody.velocity = new Vector2(input.x * GetMovementSpeed(), rigidbody.velocity.y);
 
             if (input.y > 0)
@@ -77,14 +83,32 @@ public class PlayerController : TimeCritter
                     rigidbody.AddForce(transform.up * JumpSpeed * rigidbody.mass);
                 }
             }
-            if (input.z != 0 && interactable!= null)
+            if (input.z != 0 && last_interact < Time.time)
             {
-                interactable.PlayerInteract();
+                if (myPickup != null)
+                {
+                    DropItem(true);
+                }
+                else if (interactable != null)
+                {
+                    interactable.PlayerInteract(this);
+                }
             }
         }
         else
         {
             rigidbody.velocity += (Vector2)input * airSpeed * Time.deltaTime;
+            if (input.z != 0)
+            {
+                if (last_interact < Time.time)
+                {
+                    last_interact = Time.time + .3f;
+                    if (myPickup != null)
+                    {
+                        DropItem(false);
+                    }
+                }
+            }
         }
     }
 
@@ -109,7 +133,8 @@ public class PlayerController : TimeCritter
     public override void TimeReset()
     {
         last_jump = -1;
-        if (!defeated)
+        last_interact = -1;
+        if (!defeated && registermovement)
         {
             if (recordstate == 1)
             {
@@ -121,6 +146,7 @@ public class PlayerController : TimeCritter
         delay = 0;
         slowedTime = 0;
         interactable = null;
+        myPickup = null;
         base.TimeReset();
     }
 
@@ -128,7 +154,7 @@ public class PlayerController : TimeCritter
     {
         SpawnTime = Time.time;
         History.Clear();
-        History.Add(new Vector4(input.x, input.y, input.z, 0));
+        History.Add(Vector4.zero);
     }
     public void Slow(float dur)
     {
@@ -157,5 +183,35 @@ public class PlayerController : TimeCritter
     public virtual bool IsOriginal()
     {
         return true;
+    }
+    TimeDroppable myPickup;
+    public void PickUpItem(TimeDroppable pickup)
+    {
+        if (pickup == null)
+            return;
+        DropItem(false);
+        myPickup = pickup;
+        myPickup.ChangeState(false);
+        last_interact = Time.time + .3f;
+    }
+    public void DropItem(bool thrown)
+    {
+        if (myPickup != null)
+        {
+            myPickup.ChangeState(true);
+            if (thrown)
+            {
+                myPickup.rigidbody.velocity = new Vector2(3 * (faceRight ? 1 : -1), 5);
+            }
+            myPickup = null;
+            last_interact = Time.time + .3f;
+        }
+    }
+    public void CarryPickup()
+    {
+        if (myPickup != null)
+        {
+            myPickup.transform.position = new Vector3(transform.position.x, transform.position.y, myPickup.transform.position.z);
+        }
     }
 }

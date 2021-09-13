@@ -64,11 +64,14 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
+  Height: 0.5
   last_grounded: -1
-  MoveSpeed: 3
+  MoveSpeed: 6
   FaceRight: 1
   sightrange: {x: 5, y: 2}
   DefenseRadius: 1
+  currentstate: 0
+  AttackDelay: 1
 --- !u!1001 &7084816890614907855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577278, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577278, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_LocalRotation.w

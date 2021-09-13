@@ -5,9 +5,9 @@ using UnityEngine;
 public class TimeForceWinch : TimeWinch
 {
     public ConstantForce2D connectedForce;
-    public override void PlayerInteract()
+    public override void PlayerInteract(PlayerController player)
     {
-        base.PlayerInteract();
+        base.PlayerInteract(player);
         if (!state && connectedForce!=null)
         {
             connectedForce.GetComponent<Rigidbody2D>().AddForce(connectedForce.force);

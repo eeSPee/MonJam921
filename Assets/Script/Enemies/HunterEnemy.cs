@@ -72,6 +72,7 @@ public class HunterEnemy : TimeEnemy
                 break;
             case State.eating:
                 Pause(1);
+                rigidbody.velocity = Vector2.zero;
                 break;
         }
     }
@@ -131,9 +132,16 @@ public class HunterEnemy : TimeEnemy
     }
     public void ScanForTargets()
     {
-        foreach (PlayerController bait in GameObject.FindObjectsOfType<PlayerController>())
+        foreach (PlayerController prey in GameObject.FindObjectsOfType<PlayerController>())
         {
-            if (!possibleTargets.Contains(bait))
+            if (!possibleTargets.Contains(prey))
+            {
+                possibleTargets.Add(prey);
+            }
+        }
+        foreach (TimeDroppable bait in GameObject.FindObjectsOfType<TimeDroppable>())
+        {
+            if (bait.gameObject.tag == "Bait" && !possibleTargets.Contains(bait))
             {
                 possibleTargets.Add(bait);
             }
@@ -142,16 +150,28 @@ public class HunterEnemy : TimeEnemy
     public float AttackDelay = 1;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (stunTime < Time.time && collision.gameObject.tag == "Player")
+        if (stunTime < Time.time)
         {
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-            if (player != null)
+            if (collision.gameObject.tag == "Player")
             {
-                player.KnockBack(10 * (transform.position.x < player.transform.position.x ? 1 : -1), 10);
-                player.Delay(AttackDelay);
-                Pause(5+(player.IsOriginal() ? 0 : AttackDelay));
-                target = null;
-                currentstate = State.retreating;
+                PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+                if (player != null)
+                {
+                    //player.KnockBack(10 * (transform.position.x < player.transform.position.x ? 1 : -1), 10);
+                    player.Delay(AttackDelay);
+                    Pause(5 + (player.IsOriginal() ? 0 : AttackDelay));
+                    target = null;
+                    ChangeState(State.retreating);
+                }
+            }
+            else if (collision.gameObject.tag == "Bait")
+            {
+                TimeDroppable bait = collision.gameObject.GetComponent<TimeDroppable>();
+                if (bait != null && bait.state  && bait.rigidbody.velocity.sqrMagnitude<.4f)
+                {
+                    ChangeState(State.eating);
+                    bait.ChangeState(false);
+                }
             }
         }
     }

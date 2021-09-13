@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeCritter : TimeEntity
+public abstract class TimeCritter : TimeEntity
 {
+    public float Width = 1f;
+    public float Height = 2f;
     public float last_grounded = -1;
     public bool IsGrounded()
     {
@@ -16,11 +18,12 @@ public class TimeCritter : TimeEntity
     }
         public virtual void OnCollisionStay2D(Collision2D collision)
     {
-        //if (collision.gameObject.tag == "Ground")
+        foreach (ContactPoint2D contact in collision.contacts)
         {
-            if (rigidbody.velocity.y<=0 && transform.position.y - .8f * transform.up.y > collision.contacts[0].point.y)
+            if (transform.position.y - Height * .25f > contact.point.y)
             {
                 last_grounded = Time.time + .1f;
+                break;
             }
         }
     }

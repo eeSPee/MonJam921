@@ -5,11 +5,11 @@ using UnityEngine;
 public class TimeSwitch : TimeInput
 {
     float last_interact_time = -1;
-    public override void PlayerInteract()
+    public override void PlayerInteract(PlayerController player)
     {
         if (last_interact_time < Time.time)
         {
-            base.PlayerInteract();
+            base.PlayerInteract(player);
             last_interact_time = Time.time + .33f;
         }
     }

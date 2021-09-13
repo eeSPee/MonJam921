@@ -7,11 +7,11 @@ public class TimeForceSwitch : TimeSwitch
     public float durationForce = 0;
     public ConstantForce2D connectedForce;
 
-    public override void PlayerInteract()
+    public override void PlayerInteract(PlayerController player)
     {
         if (state)
             return;
-        base.PlayerInteract();
+        base.PlayerInteract(player);
     }
     public override void ChangeState(bool value)
     {

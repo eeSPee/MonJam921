@@ -30,5 +30,6 @@ public class TimeEntity : MonoBehaviour
 
         rigidbody.velocity = StartVelocity;
         rigidbody.angularVelocity = StartAVelocity;
+        rigidbody.WakeUp();
     }
 }

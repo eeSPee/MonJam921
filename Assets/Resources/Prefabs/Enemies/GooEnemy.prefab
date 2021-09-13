@@ -64,6 +64,7 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
+  Height: 0.5
   last_grounded: -1
   MoveSpeed: 1
   FaceRight: 1
@@ -97,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577278, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577278, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_LocalRotation.w

@@ -22,7 +22,7 @@ public class TimeInteractable : TimeEntity
     {
         state = value;
     }
-    public virtual void PlayerInteract()
+    public virtual void PlayerInteract(PlayerController player)
     {
         ChangeState(!state);
     }

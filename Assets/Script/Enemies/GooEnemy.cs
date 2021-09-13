@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class GooSlowAura : TimeEnemy
+public class GooEnemy : TimeEnemy
 {
     public float SlowTime = 1;
     private void OnTriggerStay2D(Collider2D collision)

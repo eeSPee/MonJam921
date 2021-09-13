@@ -6,7 +6,7 @@ public class TimeWinch : TimeInput
 {
     public float requiredProgress = 1f;
     float progress = 0;
-    public override void PlayerInteract()
+    public override void PlayerInteract(PlayerController player)
     {
         if (!state )
         {

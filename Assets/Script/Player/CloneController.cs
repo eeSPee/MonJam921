@@ -9,8 +9,9 @@ public class CloneController : PlayerController
         Display = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         recordstate = 0;
+        registermovement = false;
     }
-    protected override void Update()
+    protected override void HandleInput()
     {
         if (recordstate >= 0 && recordstate < History.Count)
         {
@@ -45,14 +46,11 @@ public class CloneController : PlayerController
     }
     public override void TimeReset()
     {
-        transform.position = Start_Position;
-        transform.rotation = Start_Rotation;
+        registermovement = false;
+        base.TimeReset();
 
-        rigidbody.velocity = StartVelocity;
-        rigidbody.angularVelocity = StartAVelocity;
         SpawnTime = Time.time;
         recordstate = 0;
-        interactable = null;
     }
     Vector2 pastvelocity = Vector2.zero;
     public override void Delay(float t)

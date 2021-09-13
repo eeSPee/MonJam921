@@ -81,5 +81,8 @@ public class TimerController : MonoBehaviour
     {
         return Time.time - newGameTime + PlayerController.player.GetDelay();
     }
-
+    public void FixedUpdate()
+    {
+        Camera.main.transform.position = new Vector3(PlayerController.player.transform.position.x, PlayerController.player.transform.position.y,-10);
+    }
 }

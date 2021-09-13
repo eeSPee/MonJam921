@@ -50,13 +50,18 @@ public class TimeEnemy : TimeCritter
     }
     public override void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.contacts[0].point.y < transform.position.y - .45f)
+        foreach (ContactPoint2D contact in collision.contacts)
         {
-            last_grounded = Time.time + .1f;
-        }
-        else if ((FaceRight && collision.contacts[0].point.x > transform.position.x) || (!FaceRight && collision.contacts[0].point.x < transform.position.x))
-        {
-            FaceRight = !FaceRight;
+            if (contact.point.y < transform.position.y - Height * .5f)
+            {
+                last_grounded = Time.time + .1f;
+                break;
+            }
+            else if ((FaceRight && contact.point.x > transform.position.x) || (!FaceRight && contact.point.x < transform.position.x))
+            {
+                FaceRight = !FaceRight;
+                break;
+            }
         }
     }
     public void OnCollisionEnter2D(Collision2D collision)
