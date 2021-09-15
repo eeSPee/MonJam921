@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimerController : MonoBehaviour
+public class GameController : MonoBehaviour
 {
-    public static TimerController main;
+    public static GameController main;
     int gameRound = 1;
     float newGameTime = 0;
     public int roundCount = 3;
@@ -19,7 +19,7 @@ public class TimerController : MonoBehaviour
     }
     private void Start()
     {
-        UIManager.main.UpdateProgressBar(gameRound);
+        GUIController.main.UpdateProgressBar(gameRound);
         StartNewGame();
     }
     Coroutine runningTime;
@@ -34,7 +34,7 @@ public class TimerController : MonoBehaviour
         TimeReset();
         while (GetRemainingRoundTime() < roundTime)
             {
-            UIManager.main.UpdateTime();
+            GUIController.main.UpdateTime();
                 yield return new WaitForEndOfFrame();
         }
         if (gameRound<=roundCount)
@@ -49,7 +49,7 @@ public class TimerController : MonoBehaviour
         ClonePlayer(PlayerController.player);
         PlayerController.player.RewriteHistory();
         gameRound++;
-        UIManager.main.UpdateProgressBar(gameRound);
+        GUIController.main.UpdateProgressBar(gameRound);
     }
     public void GameReset()
     {

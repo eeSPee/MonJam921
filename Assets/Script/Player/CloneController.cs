@@ -8,6 +8,7 @@ public class CloneController : PlayerController
     {
         Display = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         recordstate = 0;
         registermovement = false;
     }

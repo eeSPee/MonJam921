@@ -9,11 +9,13 @@ public class TimeEntity : MonoBehaviour
     public Quaternion Start_Rotation;
 
     public Rigidbody2D rigidbody;
+    public Animator animator;
     public Vector2 StartVelocity;
     public float StartAVelocity;
     protected virtual void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         TimeImprint();
     }
     public virtual void TimeImprint()

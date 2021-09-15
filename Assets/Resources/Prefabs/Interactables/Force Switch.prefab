@@ -15,6 +15,7 @@ MonoBehaviour:
   Start_Position: {x: 0, y: 0, z: 0}
   Start_Rotation: {x: 0, y: 0, z: 0, w: 0}
   rigidbody: {fileID: 0}
+  animator: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
   state: 0
@@ -34,6 +35,18 @@ PrefabInstance:
     - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
       propertyPath: m_LocalPosition.x

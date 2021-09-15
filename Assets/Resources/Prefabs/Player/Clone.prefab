@@ -15,9 +15,13 @@ MonoBehaviour:
   Start_Position: {x: 0, y: 0, z: 0}
   Start_Rotation: {x: 0, y: 0, z: 0, w: 0}
   rigidbody: {fileID: 0}
+  animator: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
+  Width: 1
+  Height: 2
   last_grounded: -1
+  registermovement: 0
   playerID: 0
   SpawnTime: 0
   defeated: 0
@@ -25,6 +29,7 @@ MonoBehaviour:
   recordstate: 0
   History: []
   last_jump: -1
+  last_interact: -1
   interactable: {fileID: 0}
 --- !u!1001 &7458543052189469316
 PrefabInstance:
@@ -33,6 +38,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3322053464439123549, guid: 5a4a5237941729741850b6881e1abdff, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 058c2967bffc58b4f9a3511a5ad963a5, type: 2}
     - target: {fileID: 5354460331743387480, guid: 5a4a5237941729741850b6881e1abdff, type: 3}
       propertyPath: m_Enabled
       value: 0

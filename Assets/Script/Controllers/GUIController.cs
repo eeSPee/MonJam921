@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class GUIController : MonoBehaviour
 {
-    public static UIManager main;
+    public static GUIController main;
     Text TimerLabel;
     Transform ProgressBar;
     void Awake()
@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateTime()
     {
-        TimerLabel.text = Mathf.Ceil(TimerController.main.GetRemainingRoundTime())+"";
+        TimerLabel.text = Mathf.Ceil(GameController.main.GetRemainingRoundTime())+"";
     }
     public void UpdateProgressBar(int progress)
     {

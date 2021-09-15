@@ -16,7 +16,8 @@ public class TimeSwitch : TimeInput
     public override void ChangeState(bool value)
     {
         base.ChangeState(value);
-        GetComponent<SpriteRenderer>().color = value ? Color.green : Color.red;
+        //GetComponent<SpriteRenderer>().color = value ? Color.green : Color.red;
+        animator.SetBool("enabled", value);
     }
     public override void TimeReset()
     {

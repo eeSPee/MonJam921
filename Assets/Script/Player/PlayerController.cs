@@ -62,6 +62,7 @@ public class PlayerController : TimeCritter
         HandleInput();
         HandleMovement();
         CarryPickup();
+        UpdateAnimator();
     }
     public float GetMovementSpeed()
     {
@@ -109,6 +110,25 @@ public class PlayerController : TimeCritter
                     }
                 }
             }
+        }
+    }
+    public void UpdateAnimator()
+    {
+        GetComponent<SpriteRenderer>().flipX = !faceRight;
+
+        bool grounded = last_grounded+.05f > Time.time;
+        if (input.y>0 && animator.GetBool("grounded"))
+        {
+            animator.SetTrigger("Jump");
+        }
+        animator.SetBool("grounded", grounded);
+        if (grounded)
+        {
+            animator.SetBool("Walking", input.x!=0);
+        }
+        else
+        {
+            animator.SetFloat("ySpeed", rigidbody.velocity.y);
         }
     }
 

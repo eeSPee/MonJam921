@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5354460331743387481}
   - component: {fileID: 5354460331743387480}
   - component: {fileID: 5354460331743387476}
+  - component: {fileID: 3322053464439123549}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fc143f590d071a42945d6a57a32750a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +101,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 1.5}
   m_Direction: 0
 --- !u!114 &5354460331743387480
 MonoBehaviour:
@@ -117,9 +118,13 @@ MonoBehaviour:
   Start_Position: {x: 0, y: 0, z: 0}
   Start_Rotation: {x: 0, y: 0, z: 0, w: 0}
   rigidbody: {fileID: 0}
+  animator: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
+  Width: 1
+  Height: 2
   last_grounded: -1
+  registermovement: 0
   playerID: 0
   SpawnTime: 0
   defeated: 0
@@ -127,6 +132,7 @@ MonoBehaviour:
   recordstate: 0
   History: []
   last_jump: -1
+  last_interact: -1
   interactable: {fileID: 0}
 --- !u!50 &5354460331743387476
 Rigidbody2D:
@@ -149,3 +155,22 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!95 &3322053464439123549
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5354460331743387487}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
