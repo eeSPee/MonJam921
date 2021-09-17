@@ -8,9 +8,6 @@ TextureImporter:
   - first:
       213: -8755805678658342655
     second: apple_1
-  - first:
-      213: -270901426560336850
-    second: apple_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +38,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -115,12 +112,12 @@ TextureImporter:
       name: apple_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 5
-        width: 84
-        height: 88
+        x: 0
+        y: 0
+        width: 105
+        height: 105
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -136,19 +133,19 @@ TextureImporter:
       name: apple_1
       rect:
         serializedVersion: 2
-        x: 119
-        y: 6
-        width: 78
-        height: 89
+        x: 105
+        y: 0
+        width: 105
+        height: 105
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2c79bc76909d3cf0800000000000000
-      internalID: -270901426560336850
+      spriteID: 101b83120212d7680800000000000000
+      internalID: -8755805678658342655
       vertices: []
       indices: 
       edges: []

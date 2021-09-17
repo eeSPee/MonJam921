@@ -8,18 +8,14 @@ public class TimeInput : TimeInteractable
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerController>().interactable = this;
+            collision.gameObject.GetComponent<PlayerController>().StartInteraction(this);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-            if (player.interactable == this)
-            {
-                player.interactable = null;
-            }
+            collision.gameObject.GetComponent<PlayerController>().EndInteraction(this);
         }
     }
 }

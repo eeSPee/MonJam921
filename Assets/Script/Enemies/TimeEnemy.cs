@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class TimeEnemy : TimeCritter
 {
+    public ParticleSystem Deathplosion;
     public float MoveSpeed = 1f;
-    public bool FaceRight = true;
-    bool OriginalFacing = true;
     protected bool Walking = true;
     protected float stunTime = 0;
-    public override void TimeImprint()
+    protected override void Awake()
     {
-        base.TimeImprint();
-        OriginalFacing = FaceRight;
+        base.Awake();
+        GameObject deathefx = Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/Enemy Death Particle"));
+        deathefx.SetActive(false);
+        Deathplosion = deathefx.GetComponent<ParticleSystem>();
     }
     public override void TimeReset()
     {
         UnDie();
         base.TimeReset();
-        FaceRight = OriginalFacing;
         Walking = true;
         stunTime = 0;
         StopAllCoroutines();
+    }
+    public bool IsStunned()
+    {
+        return stunTime > Time.time;
     }
     private void Update()
     {
         Vector2 velocity = rigidbody.velocity;
 
-        if (stunTime > Time.time)
+        if (IsStunned())
         {
             velocity.x = 0;
         }
@@ -59,7 +63,7 @@ public class TimeEnemy : TimeCritter
             }
             else if ((FaceRight && contact.point.x > transform.position.x) || (!FaceRight && contact.point.x < transform.position.x))
             {
-                FaceRight = !FaceRight;
+                FaceDirection(!FaceRight);
                 break;
             }
         }
@@ -74,6 +78,12 @@ public class TimeEnemy : TimeCritter
     public void Die()
     {
         gameObject.SetActive(false);
+        if (Deathplosion!=null)
+        {
+            Deathplosion.gameObject.SetActive(true);
+            Deathplosion.transform.position = transform.position;
+            Deathplosion.Play();
+        }
     }
     public void UnDie()
     {

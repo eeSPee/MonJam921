@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimePickup : TimeInteractable
 {
+    public bool Important = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

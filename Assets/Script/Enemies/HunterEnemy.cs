@@ -13,6 +13,7 @@ public class HunterEnemy : TimeEnemy
    public  enum State
     {
         idle = 0,
+        standing,
         hunting,
         retreating,
         eating
@@ -45,34 +46,35 @@ public class HunterEnemy : TimeEnemy
         {
             rigidbody.WakeUp();
         }
+        if (IsStunned())
+        {
+            return;
+        }
         switch (currentstate)
         {
             case State.idle:
+            case State.standing:
             case State.retreating:
                 foreach (TimeEntity possibleTarget in possibleTargets)
                 {
                     if (IsInSight(possibleTarget.gameObject))
                     {
                         target = possibleTarget;
-                        currentstate = State.hunting;
+                        ChangeState( State.hunting);
                         break;
                     }
                 }
-                if (currentstate == State.retreating && Mathf.Abs(transform.position.x - defendPosition.x) < DefenseRadius)
+                if (currentstate == State.retreating && Mathf.Abs(transform.position.x - defendPosition.x) < Mathf.Max(DefenseRadius,1))
                 {
-                    currentstate = State.idle;
+                    ChangeState ( State.idle);
                 }
                 break;
             case State.hunting:
                 if (target==null || !IsInSight(target.gameObject))
                 {
-                    currentstate = State.retreating;
+                    ChangeState (State.retreating);
                     return;
                 }
-                break;
-            case State.eating:
-                Pause(1);
-                rigidbody.velocity = Vector2.zero;
                 break;
         }
     }
@@ -86,7 +88,7 @@ public class HunterEnemy : TimeEnemy
 
         if (IsGrounded())
         {
-            if (stunTime > Time.time)
+            if (IsStunned())
             {
                 velocity.x = 0;
             }
@@ -98,27 +100,33 @@ public class HunterEnemy : TimeEnemy
                     case State.idle:
                         if (DefenseRadius == 0)
                         {
-                            movement = 0;
+                            ChangeState(State.standing);
                         }
                         else
                         {
                             movement *= .33f;
                             if ((FaceRight && transform.position.x > defendPosition.x + DefenseRadius) || (!FaceRight && transform.position.x < defendPosition.x - DefenseRadius))
                             {
-                                FaceRight = !FaceRight;
+                                FaceDirection(!FaceRight);
                             }
+                        }
+                        break;
+                    case State.standing:
+                        if (!IsStunned() && DefenseRadius > 0)
+                        {
+                            ChangeState(State.retreating);
                         }
                         break;
                     case State.retreating:
                         movement *= .5f;
-                        FaceRight = transform.position.x < defendPosition.x;
+                        FaceDirection(transform.position.x < defendPosition.x);
                         break;
                     case State.hunting:
                         if (target == null)
                         {
                             ChangeState(State.idle);
                         }
-                        FaceRight = transform.position.x < target.transform.position.x;
+                        FaceDirection(transform.position.x < target.transform.position.x);
                         break;
                 }
                 velocity.x = (FaceRight ? 1 : -1) * movement;
@@ -129,6 +137,29 @@ public class HunterEnemy : TimeEnemy
     public void ChangeState(State newState)
     {
         currentstate = newState;
+        switch (currentstate)
+        {
+            case State.idle:
+                animator.SetFloat("walk_speed", .33f);
+                animator.SetBool("chewing", false);
+                break;
+            case State.standing:
+                animator.SetFloat("walk_speed", 0);
+                animator.SetBool("chewing", false);
+                break;
+            case State.retreating:
+                animator.SetFloat("walk_speed", .5f);
+                animator.SetBool("chewing", false);
+                break;
+            case State.hunting:
+                animator.SetFloat("walk_speed", 1);
+                animator.SetBool("chewing", false);
+                break;
+            case State.eating:
+                animator.SetBool("chewing", true);
+                Pause(100);
+                break;
+        }
     }
     public void ScanForTargets()
     {
@@ -150,7 +181,7 @@ public class HunterEnemy : TimeEnemy
     public float AttackDelay = 1;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (stunTime < Time.time)
+        if (!IsStunned())
         {
             if (collision.gameObject.tag == "Player")
             {
@@ -161,16 +192,18 @@ public class HunterEnemy : TimeEnemy
                     player.Delay(AttackDelay);
                     Pause(5 + (player.IsOriginal() ? 0 : AttackDelay));
                     target = null;
-                    ChangeState(State.retreating);
+                    animator.SetTrigger("Bite");
+                    ChangeState(State.standing);
                 }
             }
             else if (collision.gameObject.tag == "Bait")
             {
                 TimeDroppable bait = collision.gameObject.GetComponent<TimeDroppable>();
-                if (bait != null && bait.state  && bait.rigidbody.velocity.sqrMagnitude<.4f)
+                if (bait != null && bait.state)
                 {
                     ChangeState(State.eating);
                     bait.ChangeState(false);
+                    bait.gameObject.SetActive(false);
                 }
             }
         }

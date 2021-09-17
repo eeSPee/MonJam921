@@ -7,7 +7,15 @@ public class TimeInteractable : TimeEntity
 {
     public bool state = false;
     bool Start_State = false;
+    public GameObject Annotation;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Annotation = transform.Find("Annotation")?.gameObject;
+        if (Annotation != null)
+            Annotation.SetActive(false);
+    }
     public override void TimeImprint()
     {
         base.TimeImprint();
@@ -15,6 +23,7 @@ public class TimeInteractable : TimeEntity
     }
     public override void TimeReset()
     {
+        gameObject.SetActive(true);
         base.TimeReset();
         ChangeState(Start_State);
     }

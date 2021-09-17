@@ -52,6 +52,7 @@ public class CloneController : PlayerController
 
         SpawnTime = Time.time;
         recordstate = 0;
+        animator.SetBool("stunned", false);
     }
     Vector2 pastvelocity = Vector2.zero;
     public override void Delay(float t)
@@ -61,6 +62,7 @@ public class CloneController : PlayerController
             StopCoroutine(PauseCoroutine);
             rigidbody.velocity = pastvelocity;
             rigidbody.bodyType = RigidbodyType2D.Dynamic;
+            animator.SetBool("stunned", false);
         }
 
         PauseCoroutine = StartCoroutine(Pause(t));
@@ -69,11 +71,13 @@ public class CloneController : PlayerController
     public IEnumerator Pause(float duration)
     {
         Debug.Log("Pause " + name + " with velocity " + rigidbody.velocity);
+        animator.SetBool("stunned", true);
         pastvelocity = rigidbody.velocity;
         rigidbody.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(duration);
         rigidbody.bodyType = RigidbodyType2D.Dynamic;
         rigidbody.velocity = pastvelocity;
+        animator.SetBool("stunned", false);
     }
     public override bool IsOriginal()
     {

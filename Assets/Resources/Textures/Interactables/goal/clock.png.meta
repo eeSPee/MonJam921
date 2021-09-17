@@ -1,7 +1,19 @@
 fileFormatVersion: 2
-guid: 4c75cbbb1f2d8264cbd34a7b5b8bb0f9
+guid: f476d3e07233ba6438b02882938fb3a3
 TextureImporter:
   internalIDToNameTable:
+  - first:
+      213: -1314923570169941335
+    second: goal_0
+  - first:
+      213: 1989471369053438392
+    second: goal_1
+  - first:
+      213: 7822187391962353962
+    second: goal_2
+  - first:
+      213: -5221488780248569507
+    second: goal_3
   - first:
       213: 8581363780399802525
     second: clock_0
@@ -119,7 +131,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 300
         width: 300
         height: 300
       alignment: 0
@@ -140,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 300
-        y: 0
+        y: 300
         width: 300
         height: 300
       alignment: 0
@@ -160,7 +172,7 @@ TextureImporter:
       name: clock_2
       rect:
         serializedVersion: 2
-        x: 600
+        x: 0
         y: 0
         width: 300
         height: 300
@@ -181,7 +193,7 @@ TextureImporter:
       name: clock_3
       rect:
         serializedVersion: 2
-        x: 900
+        x: 300
         y: 0
         width: 300
         height: 300

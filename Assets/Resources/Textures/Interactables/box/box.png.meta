@@ -126,8 +126,8 @@ TextureImporter:
         serializedVersion: 2
         x: 315
         y: 318
-        width: 380
-        height: 380
+        width: 364
+        height: 382
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,10 +145,10 @@ TextureImporter:
       name: box_1
       rect:
         serializedVersion: 2
-        x: 1010
-        y: 318
-        width: 380
-        height: 373
+        x: 1015
+        y: 326
+        width: 369
+        height: 362
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,8 +168,8 @@ TextureImporter:
         serializedVersion: 2
         x: 128
         y: 18
-        width: 230
-        height: 230
+        width: 232
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,10 +187,10 @@ TextureImporter:
       name: box_3
       rect:
         serializedVersion: 2
-        x: 380
+        x: 370
         y: 17
-        width: 300
-        height: 300
+        width: 312
+        height: 292
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,9 +209,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 830
-        y: 18
-        width: 230
-        height: 230
+        y: 19
+        width: 233
+        height: 229
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,9 +230,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1082
-        y: 17
-        width: 300
-        height: 300
+        y: 18
+        width: 297
+        height: 292
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

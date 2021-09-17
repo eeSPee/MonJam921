@@ -10,6 +10,7 @@ public class TimeSwitch : TimeInput
         if (last_interact_time < Time.time)
         {
             base.PlayerInteract(player);
+            player.EndInteraction(this);
             last_interact_time = Time.time + .33f;
         }
     }

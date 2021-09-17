@@ -7,10 +7,9 @@ public class PlayerController : TimeCritter
 {
     public static PlayerController player;
 
-    bool faceRight = true;
     float hSpeed = 6;
-    float airSpeed = 6;
-    float JumpSpeed = 500;
+    float airSpeed = 5;
+    float JumpSpeed = 700;
     public bool registermovement = false;
     protected float delay = 0;
 
@@ -61,6 +60,9 @@ public class PlayerController : TimeCritter
     {
         HandleInput();
         HandleMovement();
+    }
+    private void Update()
+    { 
         CarryPickup();
         UpdateAnimator();
     }
@@ -73,7 +75,7 @@ public class PlayerController : TimeCritter
         if (IsGrounded())
         {
 
-            faceRight = (input.x == 0) ? faceRight : (input.x>0);
+            FaceDirection( (input.x == 0) ? FaceRight : (input.x>0));
             rigidbody.velocity = new Vector2(input.x * GetMovementSpeed(), rigidbody.velocity.y);
 
             if (input.y > 0)
@@ -114,9 +116,8 @@ public class PlayerController : TimeCritter
     }
     public void UpdateAnimator()
     {
-        GetComponent<SpriteRenderer>().flipX = !faceRight;
-
         bool grounded = last_grounded+.05f > Time.time;
+        animator.SetBool("slowed", IsSlowed());
         if (input.y>0 && animator.GetBool("grounded"))
         {
             animator.SetTrigger("Jump");
@@ -158,14 +159,14 @@ public class PlayerController : TimeCritter
         {
             if (recordstate == 1)
             {
-                History.Add(new Vector4(0, 0, 0, Time.time - SpawnTime+ delay));
+                History.Add(new Vector4(input.x, input.y, input.z, Time.time - SpawnTime+ delay));
             }
 
             registermovement = true;
         }
         delay = 0;
         slowedTime = 0;
-        interactable = null;
+        EndInteraction(interactable);
         myPickup = null;
         base.TimeReset();
     }
@@ -194,6 +195,8 @@ public class PlayerController : TimeCritter
     {
         delay += t;
         slowedTime -= t;
+        animator.SetTrigger("Hurt");
+
         Debug.Log("Delay " + name + " by " + t + " seconds");
     }
     public float GetDelay()
@@ -212,6 +215,7 @@ public class PlayerController : TimeCritter
         DropItem(false);
         myPickup = pickup;
         myPickup.ChangeState(false);
+        EndInteraction(interactable);
         last_interact = Time.time + .3f;
     }
     public void DropItem(bool thrown)
@@ -221,7 +225,7 @@ public class PlayerController : TimeCritter
             myPickup.ChangeState(true);
             if (thrown)
             {
-                myPickup.rigidbody.velocity = new Vector2(3 * (faceRight ? 1 : -1), 5);
+                myPickup.rigidbody.velocity = new Vector2(3 * (FaceRight ? 1 : -1), 5);
             }
             myPickup = null;
             last_interact = Time.time + .3f;
@@ -232,6 +236,21 @@ public class PlayerController : TimeCritter
         if (myPickup != null)
         {
             myPickup.transform.position = new Vector3(transform.position.x, transform.position.y, myPickup.transform.position.z);
+        }
+    }
+    public void StartInteraction(TimeInteractable mObject)
+    {
+        interactable = mObject;
+        if (IsOriginal() && mObject.Annotation != null)
+            mObject.Annotation.SetActive(true);
+    }
+    public void EndInteraction(TimeInteractable mObject)
+    {
+        if (interactable == mObject)
+        {
+            if (mObject!=null && mObject.Annotation != null)
+                mObject.Annotation.SetActive(false);
+            interactable = null;
         }
     }
 }

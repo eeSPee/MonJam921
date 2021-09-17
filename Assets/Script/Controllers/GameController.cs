@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    /* TODO
+     * fix spider bug
+     * game over UI
+     * press to play
+     * trumpet enemy
+     * */
+
+
     public static GameController main;
     int gameRound = 1;
     float newGameTime = 0;
@@ -37,10 +45,21 @@ public class GameController : MonoBehaviour
             GUIController.main.UpdateTime();
                 yield return new WaitForEndOfFrame();
         }
-        if (gameRound<=roundCount)
+        if (gameRound<roundCount)
         {
             EndGameRound();
             StartNewGame();
+        }
+        else
+        {
+            if (CheckGameState())
+            {
+                Debug.Log("Game Won");
+            }else
+            {
+
+                Debug.Log("Game Lost");
+            }
         }
     }
     public void EndGameRound()
@@ -84,5 +103,16 @@ public class GameController : MonoBehaviour
     public void FixedUpdate()
     {
         Camera.main.transform.position = new Vector3(PlayerController.player.transform.position.x, PlayerController.player.transform.position.y,-10);
+    }
+    public bool CheckGameState()
+    {
+        foreach (TimePickup Pickup in FindObjectsOfType<TimePickup>())
+        {
+            if (Pickup.Important && Pickup.state)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
