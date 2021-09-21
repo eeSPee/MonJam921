@@ -11,16 +11,17 @@ public class CloneController : PlayerController
         animator = GetComponent<Animator>();
         recordstate = 0;
         registermovement = false;
+        Hat = transform.Find("Hat Parent").gameObject;
     }
     protected override void HandleInput()
     {
         if (recordstate >= 0 && recordstate < History.Count)
         {
-            if (History[recordstate].w < 0)
+            /*if (History[recordstate].w < 0)
             {
                 Kill();
-            }
-            if (Time.time >= History[recordstate].w + SpawnTime)
+            }*/
+            if (Time.time >= History[recordstate].w + SpawnTime + delay)
             {
                 input = new Vector3(History[recordstate].x, History[recordstate].y, History[recordstate].z);
                 recordstate++;
@@ -38,13 +39,15 @@ public class CloneController : PlayerController
         Start_Rotation = other.Start_Rotation;
         StartVelocity = other.StartVelocity;
         StartAVelocity = other.StartAVelocity;
+
+        Hat.GetComponentInChildren<SpriteRenderer>().sprite = other.Hat.GetComponentInChildren<SpriteRenderer>().sprite;
     }
-    public override void Kill()
+    /*public override void Kill()
     {
         enabled = false;
         defeated = true;
         Explode();
-    }
+    }*/
     public override void TimeReset()
     {
         registermovement = false;
@@ -52,6 +55,8 @@ public class CloneController : PlayerController
 
         SpawnTime = Time.time;
         recordstate = 0;
+        Delay(0);
+        delay = 0;
         animator.SetBool("stunned", false);
     }
     Vector2 pastvelocity = Vector2.zero;
@@ -64,7 +69,11 @@ public class CloneController : PlayerController
             rigidbody.bodyType = RigidbodyType2D.Dynamic;
             animator.SetBool("stunned", false);
         }
-
+        if (t == 0)
+        {
+            return;
+        }
+        delay += t;
         PauseCoroutine = StartCoroutine(Pause(t));
     }
     Coroutine PauseCoroutine;

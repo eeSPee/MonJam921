@@ -179,7 +179,7 @@ public class HunterEnemy : TimeEnemy
         }
     }
     public float AttackDelay = 1;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (!IsStunned())
         {

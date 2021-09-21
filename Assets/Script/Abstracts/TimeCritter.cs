@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class TimeCritter : TimeEntity
 {
-    public bool OriginalFacing = true;
+    public bool Start_Facing = true;
     public float Width = 1f;
     public float Height = 2f;
     public float last_grounded = -1;
@@ -12,13 +12,13 @@ public abstract class TimeCritter : TimeEntity
     public override void TimeImprint()
     {
         base.TimeImprint();
-        OriginalFacing = FaceRight;
+        Start_Facing = FaceRight;
     }
     public bool IsGrounded()
     {
         return last_grounded > Time.time;
     }
-    public void FaceDirection(bool right)
+    public virtual void FaceDirection(bool right)
     {
         FaceRight = right;
         GetComponent<SpriteRenderer>().flipX = !FaceRight;
@@ -26,18 +26,29 @@ public abstract class TimeCritter : TimeEntity
     public override void TimeReset()
     {
         base.TimeReset();
+        lastSafePosition = Start_Position;
         last_grounded = -1;
-        FaceDirection(OriginalFacing);
+        FaceDirection(Start_Facing);
     }
+    public Vector3 lastSafePosition = Vector3.zero;
     public virtual void OnCollisionStay2D(Collision2D collision)
     {
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            if (transform.position.y - Height * .25f > contact.point.y)
+            if (transform.position.y - Height * .33f > contact.point.y)
             {
                 last_grounded = Time.time + .1f;
+                if (transform.position.y - Height * .49f > contact.point.y && collision.gameObject.tag == "Ground")
+                {
+                    lastSafePosition = transform.position;
+                }
                 break;
             }
         }
+    }
+    public void ReturnToSafePosition()
+    {
+        rigidbody.velocity = Vector2.zero;
+        transform.position = lastSafePosition;
     }
 }

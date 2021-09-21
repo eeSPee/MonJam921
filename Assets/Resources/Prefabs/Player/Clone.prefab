@@ -18,9 +18,12 @@ MonoBehaviour:
   animator: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
+  Start_Facing: 1
   Width: 1
   Height: 2
   last_grounded: -1
+  FaceRight: 1
+  lastSafePosition: {x: 0, y: 0, z: 0}
   registermovement: 0
   playerID: 0
   SpawnTime: 0
@@ -38,6 +41,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 696341398852960691, guid: 5a4a5237941729741850b6881e1abdff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322053464439123549, guid: 5a4a5237941729741850b6881e1abdff, type: 3}
       propertyPath: m_Controller
       value: 
@@ -48,7 +55,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5354460331743387482, guid: 5a4a5237941729741850b6881e1abdff, type: 3}
       propertyPath: m_Color.a
-      value: 0.5019608
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5354460331743387483, guid: 5a4a5237941729741850b6881e1abdff, type: 3}
       propertyPath: m_RootOrder

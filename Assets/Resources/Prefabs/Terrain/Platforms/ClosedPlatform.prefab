@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1761560604878351318}
   - component: {fileID: 3509439039131041991}
   m_Layer: 0
-  m_Name: Closed Sprite Shape
+  m_Name: ClosedPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

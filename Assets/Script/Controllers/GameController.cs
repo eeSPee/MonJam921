@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     /* TODO
-     * fix spider bug
      * game over UI
      * press to play
      * trumpet enemy

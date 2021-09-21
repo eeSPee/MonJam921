@@ -5,10 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PlayerController : TimeCritter
 {
+    public static int randomHat;
     public static PlayerController player;
 
     float hSpeed = 6;
-    float airSpeed = 5;
+    float airSpeed = 9;
     float JumpSpeed = 700;
     public bool registermovement = false;
     protected float delay = 0;
@@ -37,6 +38,8 @@ public class PlayerController : TimeCritter
         registermovement = true;
         recordstate = 1;
         SpawnTime = Time.time;
+        Hat = transform.Find("Hat Parent").gameObject;
+        randomHat = Random.Range(0, 5);
     }
 
     protected virtual void HandleInput()
@@ -52,7 +55,7 @@ public class PlayerController : TimeCritter
 
         if (newinput.x != input.x || newinput.y != input.y || newinput.z != input.z)
         {
-            History.Add(new Vector4(newinput.x, newinput.y, newinput.z, Time.time - SpawnTime + delay));
+            History.Add(new Vector4(newinput.x, newinput.y, newinput.z, GetEffectiveTime()));
         }
         input = newinput;
     }
@@ -100,7 +103,7 @@ public class PlayerController : TimeCritter
         }
         else
         {
-            rigidbody.velocity += (Vector2)input * airSpeed * Time.deltaTime;
+            rigidbody.velocity += new  Vector2(input.x, input.y*.66f) * airSpeed * Time.deltaTime;
             if (input.z != 0)
             {
                 if (last_interact < Time.time)
@@ -132,7 +135,7 @@ public class PlayerController : TimeCritter
             animator.SetFloat("ySpeed", rigidbody.velocity.y);
         }
     }
-
+/*
     public virtual void Kill()
     {
         if (!registermovement)
@@ -142,7 +145,7 @@ public class PlayerController : TimeCritter
         defeated = true;
         enabled = false;
         registermovement = false;
-        History.Add(new Vector4(input.x, input.y, input.z, Time.time - SpawnTime+ delay));
+        History.Add(new Vector4(input.x, input.y, input.z, GetEffectiveTime()));
         History.Add(new Vector4(0, 0, 0, -1));
         Explode();
     }
@@ -150,7 +153,7 @@ public class PlayerController : TimeCritter
     {
         GameObject poof = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Effects/Explosion"));
         poof.transform.position = transform.position;
-    }
+    }*/
     public override void TimeReset()
     {
         last_jump = -1;
@@ -159,7 +162,7 @@ public class PlayerController : TimeCritter
         {
             if (recordstate == 1)
             {
-                History.Add(new Vector4(input.x, input.y, input.z, Time.time - SpawnTime+ delay));
+                History.Add(new Vector4(input.x, input.y, input.z, GetEffectiveTime()));
             }
 
             registermovement = true;
@@ -169,6 +172,14 @@ public class PlayerController : TimeCritter
         EndInteraction(interactable);
         myPickup = null;
         base.TimeReset();
+        if (IsOriginal())
+        {
+            EquiptRandomHat();
+        }
+    }
+    public float GetEffectiveTime()
+    {
+        return Time.time - SpawnTime;
     }
 
     public void RewriteHistory()
@@ -193,6 +204,10 @@ public class PlayerController : TimeCritter
     }
     public virtual void Delay(float t)
     {
+        if (t == 0)
+        {
+            return;
+        }
         delay += t;
         slowedTime -= t;
         animator.SetTrigger("Hurt");
@@ -252,5 +267,17 @@ public class PlayerController : TimeCritter
                 mObject.Annotation.SetActive(false);
             interactable = null;
         }
+    }
+    public GameObject Hat;
+    public void EquiptRandomHat()
+    {
+        SpriteRenderer HatSprite = Hat.GetComponentInChildren<SpriteRenderer>();
+        randomHat += (randomHat == 5) ? -5 : 1;
+        HatSprite.sprite = Resources.LoadAll<Sprite>("Textures/Player/hat")[randomHat];
+    }
+    public override void FaceDirection(bool right)
+    {
+        base.FaceDirection(right);
+        Hat.transform.localScale = new Vector3(right ? 1 : -1, 1, 1);
     }
 }

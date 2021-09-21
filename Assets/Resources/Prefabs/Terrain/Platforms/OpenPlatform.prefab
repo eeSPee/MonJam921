@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1175413339889720320}
   - component: {fileID: 1134536329122688217}
   m_Layer: 0
-  m_Name: OpenSpriteShape
+  m_Name: OpenPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
