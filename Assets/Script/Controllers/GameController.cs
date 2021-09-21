@@ -19,9 +19,9 @@ public class GameController : MonoBehaviour
     List<TimeEntity> timeEntities = new List<TimeEntity>();
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         main = this;
         timeEntities.AddRange(FindObjectsOfType<TimeEntity>());
-
         PlayerController.player = GameObject.FindObjectOfType<PlayerController>();
     }
     private void Start()

@@ -193,6 +193,7 @@ public class HunterEnemy : TimeEnemy
                 PlayerController player = collision.gameObject.GetComponent<PlayerController>();
                 if (player != null)
                 {
+                    rigidbody.velocity = Vector2.zero;
                     //player.KnockBack(10 * (transform.position.x < player.transform.position.x ? 1 : -1), 10);
                     player.Delay(AttackDelay);
                     //Pause(5 + (player.IsOriginal() ? 0 : AttackDelay));

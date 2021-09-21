@@ -36,7 +36,6 @@ public class PlayerController : TimeCritter
     public TimeInteractable interactable;
     protected override void Awake()
     {
-        Application.targetFrameRate = 30;
       Display = GetComponent<SpriteRenderer>();
         Collision = GetComponent<Collider2D>();
         base.Awake();
@@ -91,7 +90,7 @@ public class PlayerController : TimeCritter
             {
                 if (last_jump < Time.time)
                 {
-                    last_jump = Time.time + .1f;
+                    last_jump = Time.time + .3f;
                     rigidbody.AddForce(transform.up * JumpSpeed * rigidbody.mass);
                     AudioSourcePlayer.PlayOneShot(AudioClipJump);
                 }
@@ -264,7 +263,7 @@ public class PlayerController : TimeCritter
         if (IsOriginal())
         {
             recordstate = 0;
-            Time.timeScale = 5;
+            Time.timeScale = 10;
         }
     }
     public void TimeUnfreeze()
