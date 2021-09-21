@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("TimeController - Reset time at "+Time.time);
         ClonePlayer(PlayerController.player);
+        PlayerController.player.AudioSourcePlayer.PlayOneShot(PlayerController.player.AudioClipRewind);
         PlayerController.player.RewriteHistory();
         gameRound++;
         GUIController.main.UpdateProgressBar(gameRound);

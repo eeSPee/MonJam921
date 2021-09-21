@@ -30,6 +30,14 @@ PrefabInstance:
       propertyPath: Important
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -691163281976892976, guid: c2a168321545b6e459a44cff20dc37e6, type: 3}
+      propertyPath: AudioClipGoal
+      value: 
+      objectReference: {fileID: 8300000, guid: b38a8bf8e188ef649942cfe16fb3af67, type: 3}
+    - target: {fileID: -691163281976892976, guid: c2a168321545b6e459a44cff20dc37e6, type: 3}
+      propertyPath: AudioSourceGoal
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6240005439198747394, guid: c2a168321545b6e459a44cff20dc37e6, type: 3}
       propertyPath: m_Name
       value: Clock
