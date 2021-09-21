@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class HunterEnemy : TimeEnemy
 {
+    public AudioSource AudioSourceSpider;
+    public AudioClip AudioClipGrowl;
+    public AudioClip AudioClipBite;
+
     TimeEntity target;
     List<TimeEntity> possibleTargets = new List<TimeEntity>();
     public Vector2 sightrange = new Vector2(3,1);
@@ -61,6 +65,7 @@ public class HunterEnemy : TimeEnemy
                     {
                         target = possibleTarget;
                         ChangeState( State.hunting);
+                        AudioSourceSpider.PlayOneShot(AudioClipGrowl);
                         break;
                     }
                 }
@@ -193,6 +198,7 @@ public class HunterEnemy : TimeEnemy
                     Pause(5 + (player.IsOriginal() ? 0 : AttackDelay));
                     target = null;
                     animator.SetTrigger("Bite");
+                    AudioSourceSpider.PlayOneShot(AudioClipBite);
                     ChangeState(State.standing);
                 }
             }

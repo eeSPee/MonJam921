@@ -27,6 +27,11 @@ public class PlayerController : TimeCritter
     public float last_interact = -1;
     float slowedTime = 0;
 
+    public AudioSource AudioSourcePlayer;
+    public AudioClip AudioClipJump;
+    public AudioClip AudioClipSlow;
+    public AudioClip AudioClipRewind;
+
     public TimeInteractable interactable;
     protected override void Awake()
     {
@@ -62,7 +67,7 @@ public class PlayerController : TimeCritter
         HandleMovement();
     }
     private void Update()
-    { 
+    {
         CarryPickup();
         UpdateAnimator();
     }
@@ -84,6 +89,7 @@ public class PlayerController : TimeCritter
                 {
                     last_jump = Time.time + .1f;
                     rigidbody.AddForce(transform.up * JumpSpeed * rigidbody.mass);
+                    AudioSourcePlayer.PlayOneShot(AudioClipJump);
                 }
             }
             if (input.z != 0 && last_interact < Time.time)
@@ -180,6 +186,7 @@ public class PlayerController : TimeCritter
     public void Slow(float dur)
     {
         slowedTime = Time.time + dur;
+        AudioSourcePlayer.PlayOneShot(AudioClipSlow);
     }
     public bool IsSlowed()
     {
@@ -226,6 +233,7 @@ public class PlayerController : TimeCritter
             if (thrown)
             {
                 myPickup.rigidbody.velocity = new Vector2(3 * (FaceRight ? 1 : -1), 5);
+                myPickup.AudioSourceApple.PlayOneShot(myPickup.AudioClipAppleThrow);
             }
             myPickup = null;
             last_interact = Time.time + .3f;

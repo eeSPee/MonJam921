@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class TimeDroppable : TimeInput
 {
+  public AudioSource AudioSourceApple;
+  public AudioClip AudioClipApplePickup;
+  public AudioClip AudioClipAppleThrow;
+
     Collider2D[] colliders;
     protected override void Awake()
     {
@@ -17,6 +21,7 @@ public class TimeDroppable : TimeInput
     public override void PlayerInteract(PlayerController player)
     {
         player.PickUpItem(this);
+        AudioSourceApple.PlayOneShot(AudioClipApplePickup);
     }
     public override void ChangeState(bool value)
     {

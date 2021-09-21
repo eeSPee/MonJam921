@@ -18,9 +18,11 @@ MonoBehaviour:
   animator: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
+  OriginalFacing: 1
   Width: 1
   Height: 2
   last_grounded: -1
+  FaceRight: 1
   registermovement: 0
   playerID: 0
   SpawnTime: 0
@@ -30,6 +32,12 @@ MonoBehaviour:
   History: []
   last_jump: -1
   last_interact: -1
+  AudioSourcePlayer: {fileID: 7824543653980914811}
+  AudioClipJump: {fileID: 8300000, guid: c2f8c6ee17628474ea7884fff790f6c0, type: 3}
+  AudioClipSlow: {fileID: 8300000, guid: 8ce0a0f74083ae448841ba788756fea6, type: 3}
+  AudioSourceApple: {fileID: 7824543653980914811}
+  AudioClipApplePickup: {fileID: 8300000, guid: e5220da8b54ec5e44a881d4a79108b9e, type: 3}
+  AudioClipAppleThrow: {fileID: 8300000, guid: 50cb7c869f1d1fe42a9e2d8e32a38ea6, type: 3}
   interactable: {fileID: 0}
 --- !u!1001 &7458543052189469316
 PrefabInstance:
@@ -104,5 +112,10 @@ PrefabInstance:
 --- !u!1 &3300237129103840731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5354460331743387487, guid: 5a4a5237941729741850b6881e1abdff, type: 3}
+  m_PrefabInstance: {fileID: 7458543052189469316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7824543653980914811 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 798348369828761343, guid: 5a4a5237941729741850b6881e1abdff, type: 3}
   m_PrefabInstance: {fileID: 7458543052189469316}
   m_PrefabAsset: {fileID: 0}

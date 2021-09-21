@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TimeForceSwitch : TimeSwitch
 {
+    public AudioSource AudioSourceSwitch;
+    public AudioClip AudioClipSwitch;
     public float durationForce = 0;
     public ConstantForce2D connectedForce;
 
@@ -12,6 +14,7 @@ public class TimeForceSwitch : TimeSwitch
         if (state)
             return;
         base.PlayerInteract(player);
+        AudioSourceSwitch.PlayOneShot(AudioClipSwitch);
     }
     public override void ChangeState(bool value)
     {
