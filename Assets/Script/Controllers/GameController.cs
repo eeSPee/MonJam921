@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
         main = this;
         timeEntities.AddRange(FindObjectsOfType<TimeEntity>());
         PlayerController.player = GameObject.FindObjectOfType<PlayerController>();
+        PlayerController.player.gameObject.SetActive(false);
     }
     private void Start()
     {
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
     Coroutine runningTime;
     public void StartNewGame()
     {
+        PlayerController.player.gameObject.SetActive(true);
         if (runningTime!=null)
             StopCoroutine(runningTime);
         runningTime = StartCoroutine(HandleGameTime());

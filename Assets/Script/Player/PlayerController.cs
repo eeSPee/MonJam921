@@ -43,6 +43,7 @@ public class PlayerController : TimeCritter
         registermovement = true;
         recordstate = 1;
         SpawnTime = Time.time;
+        last_grounded = Time.time + .1f;
         Hat = transform.Find("Hat Parent").gameObject;
         randomHat = Random.Range(0, 5);
     }
@@ -164,6 +165,7 @@ public class PlayerController : TimeCritter
     {
         last_jump = -1;
         last_interact = -1;
+        last_grounded = Time.time + .1f;
         if (!defeated && registermovement)
         {
             if (recordstate == 1)
