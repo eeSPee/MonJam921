@@ -195,7 +195,8 @@ public class HunterEnemy : TimeEnemy
                 {
                     //player.KnockBack(10 * (transform.position.x < player.transform.position.x ? 1 : -1), 10);
                     player.Delay(AttackDelay);
-                    Pause(5 + (player.IsOriginal() ? 0 : AttackDelay));
+                    //Pause(5 + (player.IsOriginal() ? 0 : AttackDelay));
+                    Pause(5 + AttackDelay);
                     target = null;
                     animator.SetTrigger("Bite");
                     AudioSourceSpider.PlayOneShot(AudioClipBite);

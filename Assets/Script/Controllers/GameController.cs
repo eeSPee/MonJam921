@@ -98,7 +98,8 @@ public class GameController : MonoBehaviour
     }
     public float GetRemainingRoundTime()
     {
-        return Time.time - newGameTime + PlayerController.player.GetDelay();
+        // return Time.time - newGameTime + PlayerController.player.GetDelay();
+        return Time.time - newGameTime;
     }
     public void FixedUpdate()
     {

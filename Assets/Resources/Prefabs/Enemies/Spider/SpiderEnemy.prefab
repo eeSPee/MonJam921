@@ -180,11 +180,12 @@ MonoBehaviour:
   animator: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
-  OriginalFacing: 1
+  Start_Facing: 1
   Width: 1
   Height: 0.5
   last_grounded: -1
   FaceRight: 1
+  lastSafePosition: {x: 0, y: 0, z: 0}
   Deathplosion: {fileID: 0}
   MoveSpeed: 6
   AudioSourceSpider: {fileID: 2652458153134830267}
@@ -193,7 +194,7 @@ MonoBehaviour:
   sightrange: {x: 5, y: 2}
   DefenseRadius: 1
   currentstate: 0
-  AttackDelay: 1
+  AttackDelay: 2
 --- !u!1001 &7084816890614907855
 PrefabInstance:
   m_ObjectHideFlags: 0

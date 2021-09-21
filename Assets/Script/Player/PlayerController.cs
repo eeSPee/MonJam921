@@ -36,7 +36,8 @@ public class PlayerController : TimeCritter
     public TimeInteractable interactable;
     protected override void Awake()
     {
-        Display = GetComponent<SpriteRenderer>();
+        Application.targetFrameRate = 30;
+      Display = GetComponent<SpriteRenderer>();
         Collision = GetComponent<Collider2D>();
         base.Awake();
         RewriteHistory();
@@ -168,7 +169,7 @@ public class PlayerController : TimeCritter
         {
             if (recordstate == 1)
             {
-                History.Add(new Vector4(input.x, input.y, input.z, GetEffectiveTime()));
+                History.Add(new Vector4(input.x, input.y, input.z, Time.time - SpawnTime));
             }
 
             registermovement = true;
@@ -180,12 +181,13 @@ public class PlayerController : TimeCritter
         base.TimeReset();
         if (IsOriginal())
         {
+            TimeUnfreeze();
             EquiptRandomHat();
         }
     }
     public float GetEffectiveTime()
     {
-        return Time.time - SpawnTime;
+        return Time.time - SpawnTime - delay;
     }
 
     public void RewriteHistory()
@@ -209,7 +211,7 @@ public class PlayerController : TimeCritter
         rigidbody.position += Vector2.up * .1f;
         rigidbody.velocity = new Vector2(x,y);
     }
-    public virtual void Delay(float t)
+    /*public virtual void Delay(float t)
     {
         if (t == 0)
         {
@@ -220,7 +222,68 @@ public class PlayerController : TimeCritter
         animator.SetTrigger("Hurt");
 
         Debug.Log("Delay " + name + " by " + t + " seconds");
+    }*/
+    Vector2 pastvelocity = Vector2.zero;
+    public void Delay(float t)
+    {
+
+            TimeUnfreeze();
+
+        if (t == 0)
+        {
+            return;
+        }
+        delay += t;
+        //slowedTime -= t;
+        PauseCoroutine = StartCoroutine(Pause(t));
     }
+    Coroutine PauseCoroutine;
+    public IEnumerator Pause(float duration)
+    {
+        Debug.Log("Pause " + name + " with velocity " + rigidbody.velocity);
+        animator.SetBool("stunned", true);
+        pastvelocity = rigidbody.velocity;
+        rigidbody.bodyType = RigidbodyType2D.Static;
+        animator.SetTrigger("Ouch");
+        if (IsOriginal())
+        {
+            TimeFreeze();
+        }
+        yield return new WaitForSeconds(duration);
+        if (IsOriginal())
+        {
+            TimeUnfreeze();
+        }
+        rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        rigidbody.velocity = pastvelocity;
+        animator.SetBool("stunned", false);
+    }
+    public void TimeFreeze()
+    {
+        animator.SetFloat("AnimSpeed", .2f);
+        if (IsOriginal())
+        {
+            recordstate = 0;
+            Time.timeScale = 5;
+        }
+    }
+    public void TimeUnfreeze()
+    {
+        if (PauseCoroutine != null)
+        {
+            StopCoroutine(PauseCoroutine);
+            rigidbody.velocity = pastvelocity;
+            rigidbody.bodyType = RigidbodyType2D.Dynamic;
+            animator.SetBool("stunned", false);
+            animator.SetFloat("AnimSpeed", 1);
+        }
+        if (IsOriginal())
+        {
+            recordstate = 1;
+            Time.timeScale = 1;
+        }
+    }
+
     public float GetDelay()
     {
         return delay;
