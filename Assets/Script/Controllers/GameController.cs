@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     /* TODO
-     * game over UI
-     * press to play
+	 * BG
+	 * mushrooms
      * trumpet enemy
      * */
-
 
     public static GameController main;
     int gameRound = 1;
@@ -24,10 +24,12 @@ public class GameController : MonoBehaviour
         timeEntities.AddRange(FindObjectsOfType<TimeEntity>());
         PlayerController.player = GameObject.FindObjectOfType<PlayerController>();
         PlayerController.player.gameObject.SetActive(false);
+        Cursor.visible = false;
     }
     private void Start()
     {
         GUIController.main.UpdateProgressBar(gameRound);
+        GameOverUI.main.gameObject.SetActive(false);
         StartNewGame();
     }
     Coroutine runningTime;
@@ -46,22 +48,15 @@ public class GameController : MonoBehaviour
             GUIController.main.UpdateTime();
                 yield return new WaitForEndOfFrame();
         }
-        if (gameRound<roundCount)
+        if (gameRound<=roundCount)
         {
             EndGameRound();
-            StartNewGame();
         }
-        else
+        if (IsGameOver() )
         {
-            if (CheckGameState())
-            {
-                Debug.Log("Game Won");
-            }else
-            {
-
-                Debug.Log("Game Lost");
-            }
+            GameOverUI.main.gameObject.SetActive(true);
         }
+        StartNewGame();
     }
     public void EndGameRound()
     {
@@ -72,10 +67,9 @@ public class GameController : MonoBehaviour
         gameRound++;
         GUIController.main.UpdateProgressBar(gameRound);
     }
-    public void GameReset()
+    public bool IsGameOver()
     {
-        if (runningTime != null)
-            StopCoroutine(runningTime);
+        return gameRound > roundCount;
     }
     public void TimeReset()
     {
@@ -106,16 +100,22 @@ public class GameController : MonoBehaviour
     public void FixedUpdate()
     {
         Camera.main.transform.position = new Vector3(PlayerController.player.transform.position.x, PlayerController.player.transform.position.y,-10);
-    }
-    public bool CheckGameState()
-    {
-        foreach (TimePickup Pickup in FindObjectsOfType<TimePickup>())
+        if (Input.GetButtonUp("Reset"))
         {
-            if (Pickup.Important && Pickup.state)
-            {
-                return false;
-            }
+            HandleReset();
         }
-        return true;
+    }
+    public void HandleReset()
+    {
+        Debug.Log("PLAYER RESET");
+        if (IsGameOver())
+        {
+            Scene currentscene = SceneManager.GetActiveScene(); 
+            SceneManager.LoadScene(currentscene.name);
+        }
+        else
+        {
+            StartNewGame();
+        }
     }
 }

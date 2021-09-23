@@ -9,7 +9,7 @@ public class PlayerController : TimeCritter
     public static PlayerController player;
 
     float hSpeed = 6;
-    float airSpeed = 9;
+    Vector2 airSpeed = new Vector2(6,6);
     float JumpSpeed = 700;
     public bool registermovement = false;
     protected float delay = 0;
@@ -41,7 +41,6 @@ public class PlayerController : TimeCritter
         base.Awake();
         RewriteHistory();
         registermovement = true;
-        recordstate = 1;
         SpawnTime = Time.time;
         last_grounded = Time.time + .1f;
         Hat = transform.Find("Hat Parent").gameObject;
@@ -110,7 +109,8 @@ public class PlayerController : TimeCritter
         }
         else
         {
-            rigidbody.velocity += new  Vector2(input.x, input.y*.66f) * airSpeed * Time.deltaTime;
+            rigidbody.velocity = new Vector2(input.x * airSpeed.x, rigidbody.velocity .y + input.y * airSpeed.y * Time.deltaTime ) ;
+            //rigidbody.velocity += new  Vector2(input.x * airSpeed.x, input.y* airSpeed.y) * Time.deltaTime;
             if (input.z != 0)
             {
                 if (last_interact < Time.time)
@@ -168,10 +168,8 @@ public class PlayerController : TimeCritter
         last_grounded = Time.time + .1f;
         if (!defeated && registermovement)
         {
-            if (recordstate == 1)
-            {
                 History.Add(new Vector4(input.x, input.y, input.z, Time.time - SpawnTime));
-            }
+            
 
             registermovement = true;
         }
@@ -264,7 +262,7 @@ public class PlayerController : TimeCritter
         animator.SetFloat("AnimSpeed", .2f);
         if (IsOriginal())
         {
-            recordstate = 0;
+            registermovement = false;
             Time.timeScale = 10;
         }
     }
@@ -280,7 +278,7 @@ public class PlayerController : TimeCritter
         }
         if (IsOriginal())
         {
-            recordstate = 1;
+            registermovement = true;
             Time.timeScale = 1;
         }
     }

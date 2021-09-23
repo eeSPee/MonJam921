@@ -44,7 +44,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!82 &2652458153134830267
@@ -143,25 +143,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &4713820266497751999
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8493781783383987020}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 09c2e6313dd7b9b4a933653d05cf4257, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &6611488083421260475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +176,25 @@ MonoBehaviour:
   DefenseRadius: 1
   currentstate: 0
   AttackDelay: 2
+--- !u!95 &7393156498911616252
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493781783383987020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 09c2e6313dd7b9b4a933653d05cf4257, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7084816890614907855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -202,6 +202,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1697200562518577276, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577276, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -251,9 +255,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577279, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5066667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697200562518577279, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697200562518577279, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4316182496104309483, guid: 83770e8c8a9484940868db593067f80e, type: 3}
+      objectReference: {fileID: -7751051548196967241, guid: dc6d7015faa7a19488ca485be84add74, type: 3}
     - target: {fileID: 1697200562518577279, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -264,6 +276,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577279, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697200562518577279, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577282, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}

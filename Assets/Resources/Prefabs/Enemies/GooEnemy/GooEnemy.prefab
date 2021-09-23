@@ -44,7 +44,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2}
+  m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!95 &2416058042486482218
@@ -84,11 +84,12 @@ MonoBehaviour:
   animator: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
-  OriginalFacing: 1
+  Start_Facing: 1
   Width: 1
   Height: 0.5
   last_grounded: -1
   FaceRight: 1
+  lastSafePosition: {x: 0, y: 0, z: 0}
   Deathplosion: {fileID: 0}
   MoveSpeed: 1
   SlowTime: 1
@@ -105,7 +106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577276, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_Offset.y
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1697200562518577276, guid: 62101b03fcf85344bb7584ef40254f60, type: 3}
       propertyPath: m_IsTrigger

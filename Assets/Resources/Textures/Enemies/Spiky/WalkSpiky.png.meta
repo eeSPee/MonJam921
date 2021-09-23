@@ -118,12 +118,12 @@ TextureImporter:
       name: WalkSpiky_0
       rect:
         serializedVersion: 2
-        x: 100
-        y: 800
-        width: 520
-        height: 500
+        x: 167
+        y: 891
+        width: 291
+        height: 178
       alignment: 9
-      pivot: {x: 0.44516677, y: 0.27823034}
+      pivot: {x: 0.49725154, y: 0.037150178}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,12 +139,12 @@ TextureImporter:
       name: WalkSpiky_1
       rect:
         serializedVersion: 2
-        x: 750
-        y: 800
-        width: 520
-        height: 500
+        x: 910
+        y: 894
+        width: 236
+        height: 192
       alignment: 9
-      pivot: {x: 0.5426481, y: 0.28456664}
+      pivot: {x: 0.506779, y: 0.020906767}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,12 +160,12 @@ TextureImporter:
       name: WalkSpiky_2
       rect:
         serializedVersion: 2
-        x: 100
-        y: 150
-        width: 520
-        height: 500
+        x: 167
+        y: 192
+        width: 287
+        height: 173
       alignment: 9
-      pivot: {x: 0.45430562, y: 0.16734555}
+      pivot: {x: 0.5, y: 0.041884847}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,12 +181,12 @@ TextureImporter:
       name: WalkSpiky_3
       rect:
         serializedVersion: 2
-        x: 750
-        y: 150
-        width: 520
-        height: 500
+        x: 858
+        y: 191
+        width: 293
+        height: 153
       alignment: 9
-      pivot: {x: 0.5426481, y: 0.15467301}
+      pivot: {x: 0.5, y: 0.052757114}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

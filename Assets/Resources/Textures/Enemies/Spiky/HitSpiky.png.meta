@@ -16,10 +16,10 @@ TextureImporter:
     second: HitSpiky_3
   - first:
       213: 8782952131946466717
-    second: HitSpiky_4
+    second: HitSpiky_3
   - first:
       213: 5803431401140331520
-    second: HitSpiky_5
+    second: HitSpiky_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,12 +124,12 @@ TextureImporter:
       name: HitSpiky_0
       rect:
         serializedVersion: 2
-        x: 100
-        y: 800
-        width: 536.6667
-        height: 500
-      alignment: 9
-      pivot: {x: 0.43211138, y: 0.27189416}
+        x: 166
+        y: 894
+        width: 292
+        height: 176
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,12 +145,12 @@ TextureImporter:
       name: HitSpiky_1
       rect:
         serializedVersion: 2
-        x: 766
-        y: 800
-        width: 536.6667
-        height: 500
-      alignment: 9
-      pivot: {x: 0.49704832, y: 0.27506226}
+        x: 875
+        y: 897
+        width: 278
+        height: 153
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -166,12 +166,12 @@ TextureImporter:
       name: HitSpiky_2
       rect:
         serializedVersion: 2
-        x: 1432
-        y: 800
-        width: 536.6667
-        height: 500
-      alignment: 9
-      pivot: {x: 0.55608195, y: 0.26872596}
+        x: 1535
+        y: 894
+        width: 354
+        height: 222
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -187,19 +187,19 @@ TextureImporter:
       name: HitSpiky_3
       rect:
         serializedVersion: 2
-        x: 100
-        y: 150
-        width: 536.6667
-        height: 500
-      alignment: 9
-      pivot: {x: 0.43211138, y: 0.17368183}
+        x: 156
+        y: 191
+        width: 312
+        height: 189
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 121883acfd495d650800000000000000
-      internalID: 6257070946192490785
+      spriteID: d9dcdef0e6053e970800000000000000
+      internalID: 8782952131946466717
       vertices: []
       indices: 
       edges: []
@@ -208,19 +208,19 @@ TextureImporter:
       name: HitSpiky_4
       rect:
         serializedVersion: 2
-        x: 766
-        y: 150
-        width: 536.6667
-        height: 500
-      alignment: 9
-      pivot: {x: 0.50000006, y: 0.16734555}
+        x: 866
+        y: 196
+        width: 293
+        height: 173
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9dcdef0e6053e970800000000000000
-      internalID: 8782952131946466717
+      spriteID: 00421578c1ee98050800000000000000
+      internalID: 5803431401140331520
       vertices: []
       indices: 
       edges: []

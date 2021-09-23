@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimeEnemy : TimeCritter
 {
+    Vector2 offset;
     public ParticleSystem Deathplosion;
     public float MoveSpeed = 1f;
     protected bool Walking = true;
@@ -14,6 +15,7 @@ public class TimeEnemy : TimeCritter
         GameObject deathefx = Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/Enemy Death Particle"));
         deathefx.SetActive(false);
         Deathplosion = deathefx.GetComponent<ParticleSystem>();
+        offset = GetComponent<CircleCollider2D>().offset;
     }
     public override void TimeReset()
     {
@@ -56,7 +58,7 @@ public class TimeEnemy : TimeCritter
     {
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            if (contact.point.y < transform.position.y - Height * .5f)
+            if (contact.point.y < transform.position.y - Height * .5f + offset.y)
             {
                 last_grounded = Time.time + .1f;
                 break;
