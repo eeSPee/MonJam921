@@ -32,6 +32,7 @@ public class PlayerController : TimeCritter
     public AudioClip AudioClipJump;
     public AudioClip AudioClipSlow;
     public AudioClip AudioClipRewind;
+    public AudioClip AudioClipHurt;
 
     public TimeInteractable interactable;
     protected override void Awake()
@@ -169,7 +170,7 @@ public class PlayerController : TimeCritter
         if (!defeated && registermovement)
         {
                 History.Add(new Vector4(input.x, input.y, input.z, Time.time - SpawnTime));
-            
+
 
             registermovement = true;
         }
@@ -244,6 +245,7 @@ public class PlayerController : TimeCritter
         pastvelocity = rigidbody.velocity;
         rigidbody.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("Ouch");
+        AudioSourcePlayer.PlayOneShot(AudioClipHurt);
         if (IsOriginal())
         {
             TimeFreeze();

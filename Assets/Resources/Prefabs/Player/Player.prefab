@@ -10262,6 +10262,7 @@ MonoBehaviour:
   AudioClipJump: {fileID: 8300000, guid: c2f8c6ee17628474ea7884fff790f6c0, type: 3}
   AudioClipSlow: {fileID: 8300000, guid: 8ce0a0f74083ae448841ba788756fea6, type: 3}
   AudioClipRewind: {fileID: 8300000, guid: ae63966034d20f34aa773c5b346ebd22, type: 3}
+  AudioClipHurt: {fileID: 8300000, guid: af64095858a0d6e4195c3e4f42ef2b9a, type: 3}
   interactable: {fileID: 0}
   Hat: {fileID: 0}
 --- !u!50 &5354460331743387476

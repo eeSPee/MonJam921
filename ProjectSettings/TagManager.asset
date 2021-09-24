@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - Bait
   - InvisibleToCamera
+  - Clock
   layers:
   - Default
   - TransparentFX

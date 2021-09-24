@@ -138,6 +138,9 @@ MonoBehaviour:
   Start_Position: {x: 0, y: 0, z: 0}
   Start_Rotation: {x: 0, y: 0, z: 0, w: 0}
   rigidbody: {fileID: 0}
+  animator: {fileID: 0}
   StartVelocity: {x: 0, y: 0}
   StartAVelocity: 0
   state: 1
+  Annotation: {fileID: 0}
+  Important: 0

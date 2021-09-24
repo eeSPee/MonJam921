@@ -5,7 +5,8 @@ using UnityEngine;
 public class HunterEnemy : TimeEnemy
 {
     public AudioSource AudioSourceSpider;
-    public AudioClip AudioClipGrowl;
+    public AudioClip AudioClipGrowlBait;
+    public AudioClip AudioClipGrowlPrey;
     public AudioClip AudioClipBite;
 
     TimeEntity target;
@@ -65,7 +66,14 @@ public class HunterEnemy : TimeEnemy
                     {
                         target = possibleTarget;
                         ChangeState( State.hunting);
-                        AudioSourceSpider.PlayOneShot(AudioClipGrowl);
+                        if (target.gameObject.tag == "Bait")
+                        {
+                          AudioSourceSpider.PlayOneShot(AudioClipGrowlBait);
+                        }
+                        else if (target.gameObject.tag == "Player")
+                        {
+                          AudioSourceSpider.PlayOneShot(AudioClipGrowlPrey);
+                        }
                         break;
                     }
                 }
