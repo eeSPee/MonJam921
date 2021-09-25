@@ -143,6 +143,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &7393156498911616252
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493781783383987020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 09c2e6313dd7b9b4a933653d05cf4257, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &6611488083421260475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,31 +189,13 @@ MonoBehaviour:
   Deathplosion: {fileID: 0}
   MoveSpeed: 6
   AudioSourceSpider: {fileID: 2652458153134830267}
-  AudioClipGrowl: {fileID: 8300000, guid: 2efeedd2ac6d7b94896a4cd76c126305, type: 3}
+  AudioClipGrowlBait: {fileID: 8300000, guid: 2efeedd2ac6d7b94896a4cd76c126305, type: 3}
+  AudioClipGrowlPrey: {fileID: 8300000, guid: 932d7d5e16b2e0e4481433aed2103fb8, type: 3}
   AudioClipBite: {fileID: 8300000, guid: 7e8b151eba052274ca3017b0afebb854, type: 3}
   sightrange: {x: 5, y: 2}
   DefenseRadius: 1
   currentstate: 0
   AttackDelay: 2
---- !u!95 &7393156498911616252
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8493781783383987020}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 09c2e6313dd7b9b4a933653d05cf4257, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7084816890614907855
 PrefabInstance:
   m_ObjectHideFlags: 0
