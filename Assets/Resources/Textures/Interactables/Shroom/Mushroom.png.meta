@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: 44bd1596208aa68408ec59d5010c4aa4
+guid: a4e0494c7929d5641adf0904bf5c87e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9136834448258697486
-    second: bubble_0
+      213: 4315506946141470425
+    second: Mushroom_0
   - first:
-      213: 1762854388791719718
-    second: bubble_1
+      213: -8641565482479284267
+    second: Mushroom_1
   - first:
-      213: -8014315233242688854
-    second: bubble_2
+      213: -2042072573829909366
+    second: Mushroom_2
   - first:
-      213: 4509215315611281716
-    second: bubble_3
+      213: 2509030704489203561
+    second: Mushroom_3
   - first:
-      213: -3401168524788556149
-    second: bubble_4
+      213: 9138273002793795528
+    second: Mushroom_4
   - first:
-      213: -2915209898500093834
-    second: bubble_5
+      213: -453006153571329579
+    second: Mushroom_5
   - first:
-      213: -3159963330678721857
-    second: bubble_6
+      213: 8178941927038248183
+    second: Mushroom_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,148 +124,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bubble_0
+      name: Mushroom_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 569
-        width: 237
-        height: 109
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 251
+        y: 894
+        width: 166
+        height: 173
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f6fcf37a71733180800000000000000
-      internalID: -9136834448258697486
+      spriteID: 9de3e76f3b2c3eb30800000000000000
+      internalID: 4315506946141470425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bubble_1
+      name: Mushroom_1
       rect:
         serializedVersion: 2
-        x: 288
-        y: 569
-        width: 368
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 947
+        y: 896
+        width: 178
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6273ba20abae67810800000000000000
-      internalID: 1762854388791719718
+      spriteID: 5df8b898afdf21880800000000000000
+      internalID: -8641565482479284267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bubble_2
+      name: Mushroom_2
       rect:
         serializedVersion: 2
-        x: 44
-        y: 387
-        width: 210
-        height: 165
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 947
+        y: 191
+        width: 181
+        height: 163
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa2519cc1ce67c090800000000000000
-      internalID: -8014315233242688854
+      spriteID: a84fc4f30d919a3e0800000000000000
+      internalID: -2042072573829909366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bubble_3
+      name: Mushroom_4
       rect:
         serializedVersion: 2
-        x: 264
-        y: 388
-        width: 392
-        height: 165
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 243
+        y: 195
+        width: 186
+        height: 144
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 439e2ce4073f39e30800000000000000
-      internalID: 4509215315611281716
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bubble_4
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 167
-        width: 280
-        height: 208
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8e1db23f3f9cc0d0800000000000000
-      internalID: -3401168524788556149
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bubble_5
-      rect:
-        serializedVersion: 2
-        x: 327
-        y: 162
-        width: 330
-        height: 207
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6780332fa081b87d0800000000000000
-      internalID: -2915209898500093834
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bubble_6
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 15
-        width: 609
-        height: 139
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fb272abc71e8524d0800000000000000
-      internalID: -3159963330678721857
+      spriteID: 8cff01021eaa1de70800000000000000
+      internalID: 9138273002793795528
       vertices: []
       indices: 
       edges: []
