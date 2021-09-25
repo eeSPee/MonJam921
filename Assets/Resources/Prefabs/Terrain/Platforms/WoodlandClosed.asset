@@ -17,47 +17,47 @@ MonoBehaviour:
     m_End: 45
     m_Order: 1
     m_Sprites:
-    - {fileID: -6293681031632343123, guid: f83a602b6bf502b4f9e0463c8b5fc4d9, type: 3}
+    - {fileID: -5262256896654566987, guid: 8bf96518879befc4da8a18396deba148, type: 3}
   - m_Start: 135
     m_End: 225
     m_Order: 0
     m_Sprites:
-    - {fileID: -8540522276277687472, guid: f83a602b6bf502b4f9e0463c8b5fc4d9, type: 3}
+    - {fileID: -7305932315023523587, guid: 8bf96518879befc4da8a18396deba148, type: 3}
   - m_Start: -135
     m_End: -45
     m_Order: 0
     m_Sprites:
-    - {fileID: 7543229400640509346, guid: f83a602b6bf502b4f9e0463c8b5fc4d9, type: 3}
+    - {fileID: -3927619460428012051, guid: 8bf96518879befc4da8a18396deba148, type: 3}
   - m_Start: 45
     m_End: 135
     m_Order: 0
     m_Sprites:
-    - {fileID: 7543229400640509346, guid: f83a602b6bf502b4f9e0463c8b5fc4d9, type: 3}
-  m_FillTexture: {fileID: 2800000, guid: 9e7b61ba9a77bd144b0eff478a65b2b4, type: 3}
+    - {fileID: -3927619460428012051, guid: 8bf96518879befc4da8a18396deba148, type: 3}
+  m_FillTexture: {fileID: 2800000, guid: 40c4c67526a3ab049b0e984839841da0, type: 3}
   m_CornerSprites:
   - m_CornerType: 0
     m_Sprites:
     - {fileID: 0}
   - m_CornerType: 1
     m_Sprites:
-    - {fileID: 21300000, guid: 9e7b61ba9a77bd144b0eff478a65b2b4, type: 3}
+    - {fileID: 0}
   - m_CornerType: 2
     m_Sprites:
-    - {fileID: 21300000, guid: 9e7b61ba9a77bd144b0eff478a65b2b4, type: 3}
+    - {fileID: 0}
   - m_CornerType: 3
     m_Sprites:
-    - {fileID: 21300000, guid: 9e7b61ba9a77bd144b0eff478a65b2b4, type: 3}
+    - {fileID: 0}
   - m_CornerType: 4
     m_Sprites:
-    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+    - {fileID: 0}
   - m_CornerType: 5
     m_Sprites:
-    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+    - {fileID: 0}
   - m_CornerType: 6
     m_Sprites:
-    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+    - {fileID: 0}
   - m_CornerType: 7
     m_Sprites:
-    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
-  m_FillOffset: 0
+    - {fileID: 0}
+  m_FillOffset: 0.005
   m_UseSpriteBorders: 1

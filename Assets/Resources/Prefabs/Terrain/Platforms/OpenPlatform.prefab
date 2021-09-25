@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8331661075011340859}
   - component: {fileID: 1175413339889720320}
   - component: {fileID: 1134536329122688217}
+  - component: {fileID: -7764234307985438389}
   m_Layer: 0
   m_Name: OpenPlatform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,3 +152,33 @@ MonoBehaviour:
   m_EnableTangents: 0
   m_GeometryCached: 0
   m_UTess2D: 0
+--- !u!60 &-7764234307985438389
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565622831024454729}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.00037574768, y: 2.499025}
+      - {x: -2.2453582, y: 0.86740386}
+      - {x: -1.387564, y: -1.7726147}
+      - {x: 1.3883158, y: -1.7726145}
+      - {x: 2.2461095, y: 0.8674042}

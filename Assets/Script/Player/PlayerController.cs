@@ -10,7 +10,7 @@ public class PlayerController : TimeCritter
 
     float hSpeed = 6;
     Vector2 airSpeed = new Vector2(6,6);
-    float JumpSpeed = 700;
+    float JumpSpeed = 15;
     public bool registermovement = false;
     protected float delay = 0;
 
@@ -91,7 +91,7 @@ public class PlayerController : TimeCritter
                 if (last_jump < Time.time)
                 {
                     last_jump = Time.time + .3f;
-                    rigidbody.AddForce(transform.up * JumpSpeed * rigidbody.mass);
+                    rigidbody.velocity = new Vector2(rigidbody.velocity .x,  JumpSpeed);
                     AudioSourcePlayer.PlayOneShot(AudioClipJump);
                 }
             }

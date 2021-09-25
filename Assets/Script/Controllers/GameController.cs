@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
         timeEntities.AddRange(FindObjectsOfType<TimeEntity>());
         PlayerController.player = GameObject.FindObjectOfType<PlayerController>();
         PlayerController.player.gameObject.SetActive(false);
+        Camera.main.GetComponent<CameraController>().TrackTarget(PlayerController.player.gameObject);
         Cursor.visible = false;
     }
     private void Start()
@@ -97,9 +98,8 @@ public class GameController : MonoBehaviour
         // return Time.time - newGameTime + PlayerController.player.GetDelay();
         return Time.time - newGameTime;
     }
-    public void FixedUpdate()
+    public void Update()
     {
-        Camera.main.transform.position = new Vector3(PlayerController.player.transform.position.x, PlayerController.player.transform.position.y,-10);
         if (Input.GetButtonUp("Reset"))
         {
             HandleReset();
