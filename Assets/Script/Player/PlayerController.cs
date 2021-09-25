@@ -34,6 +34,9 @@ public class PlayerController : TimeCritter
     public AudioClip AudioClipRewind;
     public AudioClip AudioClipHurt;
 
+    public float MinListenerDistance=1;
+    public float MaxListenerDistance=25;
+
     public TimeInteractable interactable;
     protected override void Awake()
     {
@@ -74,6 +77,7 @@ public class PlayerController : TimeCritter
     {
         CarryPickup();
         UpdateAnimator();
+        UpdateListener();
     }
     public float GetMovementSpeed()
     {
@@ -351,5 +355,22 @@ public class PlayerController : TimeCritter
     {
         base.FaceDirection(right);
         Hat.transform.localScale = new Vector3(right ? 1 : -1, 1, 1);
+    }
+    public void UpdateListener()
+    {
+      float ListenerDistance = Vector3.Distance(transform.position, player.transform.position);
+
+      if (ListenerDistance <= MinListenerDistance)
+      {
+        AudioSourcePlayer.volume = 1;
+      }
+      else if (ListenerDistance > MaxListenerDistance)
+      {
+        AudioSourcePlayer.volume = 0;
+      }
+      else
+      {
+        AudioSourcePlayer.volume = 1 - ((ListenerDistance-MinListenerDistance) / (MaxListenerDistance - MinListenerDistance));
+      }
     }
 }
