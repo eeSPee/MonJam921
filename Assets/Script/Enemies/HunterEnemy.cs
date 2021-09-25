@@ -9,6 +9,9 @@ public class HunterEnemy : TimeEnemy
     public AudioClip AudioClipGrowlPrey;
     public AudioClip AudioClipBite;
 
+    public float MinListenerDistance=1;
+    public float MaxListenerDistance=25;
+
     TimeEntity target;
     List<TimeEntity> possibleTargets = new List<TimeEntity>();
     public Vector2 sightrange = new Vector2(3,1);
@@ -40,6 +43,7 @@ public class HunterEnemy : TimeEnemy
     {
         HandleState();
         HandleMovement();
+        UpdateListener();
     }
     float lastStateUpdate = 0;
     void HandleState()
@@ -223,5 +227,22 @@ public class HunterEnemy : TimeEnemy
                 }
             }
         }
+    }
+    public void UpdateListener()
+    {
+      float ListenerDistance = Vector3.Distance(transform.position, PlayerController.player.transform.position);
+
+      if (ListenerDistance <= MinListenerDistance)
+      {
+        AudioSourceSpider.volume = 1;
+      }
+      else if (ListenerDistance > MaxListenerDistance)
+      {
+        AudioSourceSpider.volume = 0;
+      }
+      else
+      {
+        AudioSourceSpider.volume = 1 - ((ListenerDistance-MinListenerDistance) / (MaxListenerDistance - MinListenerDistance));
+      }
     }
 }
