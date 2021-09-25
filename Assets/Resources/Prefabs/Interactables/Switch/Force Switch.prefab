@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.46666667
       objectReference: {fileID: 0}
+    - target: {fileID: 6006114430775691415, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
+      propertyPath: m_Color.rgba
+      value: 4286204944
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5005511800590516259, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}

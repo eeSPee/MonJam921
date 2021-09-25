@@ -11,15 +11,16 @@ public class CameraController : MonoBehaviour
     {
         Camera cam = GetComponent<Camera>();
         SpriteRenderer camTex = GetComponentInChildren< SpriteRenderer>();
+        float aspect = Mathf.Max(1, cam.aspect);
         if (StretchTexture)
         {
             camTex.drawMode = SpriteDrawMode.Simple;
-            camTex.transform.localScale = Vector3.one * cam.orthographicSize * cam.aspect;
+            camTex.transform.localScale = Vector3.one * cam.orthographicSize * aspect;
         }
         else
         {
             camTex.drawMode = SpriteDrawMode.Tiled;
-            camTex.size = new Vector2(cam.aspect * cam.orthographicSize, cam.orthographicSize) * 2 / camTex.transform.localScale.x;
+            camTex.size = new Vector2(aspect * cam.orthographicSize, cam.orthographicSize) * 2 / camTex.transform.localScale.x;
         }
     }
     public void TrackTarget(GameObject target)

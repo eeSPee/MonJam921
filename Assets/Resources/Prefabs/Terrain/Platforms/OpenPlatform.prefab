@@ -79,18 +79,12 @@ SpriteShapeRenderer:
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   m_Sprites:
-  - {fileID: 21300000, guid: 0ae2b74b1edd14bb18dd7b65ae916a54, type: 3}
-  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
-  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
-  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
-  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
-  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
-  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
-  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
-  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 2778571848849872774, guid: 232602219860f0e4c964444ad136668f, type: 3}
+  - {fileID: 6494650607509068763, guid: 232602219860f0e4c964444ad136668f, type: 3}
+  - {fileID: 8785991639487724395, guid: 232602219860f0e4c964444ad136668f, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0.00037574768, y: 0.13772076, z: -0.00005}
-    m_Extent: {x: 2.3613043, y: 0.483122, z: 0.00005}
+    m_Center: {x: -0.0497396, y: -0.06718409, z: -0.00005}
+    m_Extent: {x: 2.2985597, y: 0.59402835, z: 0.00005}
 --- !u!114 &1134536329122688217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +138,7 @@ MonoBehaviour:
   m_StretchUV: 0
   m_WorldSpaceUV: 0
   m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
+  m_ColliderDetail: 4
   m_ColliderOffset: 0
   m_UpdateCollider: 1
   m_OptimizeCollider: 1
@@ -177,8 +171,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.00037574768, y: 2.499025}
-      - {x: -2.2453582, y: 0.86740386}
-      - {x: -1.387564, y: -1.7726147}
-      - {x: 1.3883158, y: -1.7726145}
-      - {x: 2.2461095, y: 0.8674042}
+    - - {x: -1.8372443, y: -0.16921061}
+      - {x: -1.5644158, y: 0.049193658}
+      - {x: -1.375213, y: 0.12862231}
+      - {x: -1.1474602, y: 0.10859933}
+      - {x: -0.5544326, y: -0.14164086}
+      - {x: -0.20397653, y: -0.22220221}
+      - {x: -0.0007903318, y: -0.23678534}
+      - {x: 0.38581616, y: -0.19830851}
+      - {x: 0.7056469, y: -0.10688106}
+      - {x: 1.1733683, y: 0.07004565}
+      - {x: 1.414286, y: 0.09005934}
+      - {x: 1.5919584, y: 0.02060672}
+      - {x: 1.7049686, y: -0.05657357}
+      - {x: 1.8445435, y: -0.17860904}
