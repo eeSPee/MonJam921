@@ -35,4 +35,5 @@ public class TimeInteractable : TimeEntity
     {
         ChangeState(!state);
     }
+
 }

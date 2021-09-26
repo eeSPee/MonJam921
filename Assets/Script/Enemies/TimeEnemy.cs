@@ -61,12 +61,10 @@ public class TimeEnemy : TimeCritter
             if (contact.point.y < transform.position.y - Height * .5f + offset.y)
             {
                 last_grounded = Time.time + .1f;
-                break;
             }
             else if ((FaceRight && contact.point.x > transform.position.x) || (!FaceRight && contact.point.x < transform.position.x))
             {
                 FaceDirection(!FaceRight);
-                break;
             }
         }
     }

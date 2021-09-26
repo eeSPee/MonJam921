@@ -1,15 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5896303436200567187
+--- !u!114 &7690065104386340558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6365072085538744278}
+  m_GameObject: {fileID: 6889257527286458595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b518189864ddf4385461247ba9267a, type: 3}
+  m_Script: {fileID: 11500000, guid: 18b38e944cd7d204f81f0d050e09329d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Start_Position: {x: 0, y: 0, z: 0}
@@ -22,11 +22,11 @@ MonoBehaviour:
   Annotation: {fileID: 0}
   MinListenerDistance: 1
   MaxListenerDistance: 25
-  AudioSourceSwitch: {fileID: 8466704062585701403}
+  AudioSourceSwitch: {fileID: 8264402263562636078}
   AudioClipSwitch: {fileID: 8300000, guid: 078ffe14079930f40836f2c7d1415762, type: 3}
-  durationForce: 0
-  connectedForce: {fileID: 0}
---- !u!1001 &2129046303170032245
+  Reverse: 0
+  connectedGameObject: {fileID: 0}
+--- !u!1001 &1892967853894417728
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -35,23 +35,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5034640669789148579, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
       propertyPath: m_Name
-      value: Force Switch
+      value: Disable Switch
       objectReference: {fileID: 0}
     - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63,7 +51,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5034640669789148590, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -93,28 +81,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5034640669789148591, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
-      propertyPath: m_Size.x
-      value: 0.8066667
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034640669789148591, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
-      propertyPath: m_Size.y
-      value: 0.46666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 6006114430775691415, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
-      propertyPath: m_Color.rgba
-      value: 4286204944
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5005511800590516259, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
---- !u!1 &6365072085538744278 stripped
+--- !u!1 &6889257527286458595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5034640669789148579, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
-  m_PrefabInstance: {fileID: 2129046303170032245}
+  m_PrefabInstance: {fileID: 1892967853894417728}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &8466704062585701403 stripped
+--- !u!82 &8264402263562636078 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: -1660664800318196114, guid: a9bc71939165a7b468a101ce40ae35c2, type: 3}
-  m_PrefabInstance: {fileID: 2129046303170032245}
+  m_PrefabInstance: {fileID: 1892967853894417728}
   m_PrefabAsset: {fileID: 0}
