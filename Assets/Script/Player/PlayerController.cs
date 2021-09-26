@@ -109,6 +109,7 @@ public class PlayerController : TimeCritter
                 else if (interactable != null)
                 {
                     interactable.PlayerInteract(this);
+                    animator.SetTrigger("Action");
                 }
             }
         }
@@ -317,6 +318,7 @@ public class PlayerController : TimeCritter
             {
                 myPickup.rigidbody.velocity = new Vector2(3 * (FaceRight ? 1 : -1), 5);
                 myPickup.AudioSourceApple.PlayOneShot(myPickup.AudioClipAppleThrow);
+                animator.SetTrigger("Action");
             }
             myPickup = null;
             last_interact = Time.time + .3f;
