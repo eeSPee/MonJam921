@@ -6,9 +6,6 @@ public class TimeSwitch : TimeInput
 {
     float last_interact_time = -1;
 
-    public float MinListenerDistance = 1;
-    public float MaxListenerDistance = 25;
-
     public AudioSource AudioSourceSwitch;
     public AudioClip AudioClipSwitch;
     public override void PlayerInteract(PlayerController player)
@@ -40,19 +37,7 @@ public class TimeSwitch : TimeInput
 
     public void UpdateListener()
     {
-        float ListenerDistance = Vector3.Distance(transform.position, PlayerController.player.transform.position);
-
-        if (ListenerDistance <= MinListenerDistance)
-        {
-            AudioSourceSwitch.volume = 1;
-        }
-        else if (ListenerDistance > MaxListenerDistance)
-        {
-            AudioSourceSwitch.volume = 0;
-        }
-        else
-        {
-            AudioSourceSwitch.volume = 1 - ((ListenerDistance - MinListenerDistance) / (MaxListenerDistance - MinListenerDistance));
-        }
+		float ListenerDistance = ((Vector2)transform.position - (Vector2)PlayerController.player.transform.position).magnitude;
+		AudioSourceSwitch.volume = Mathf.Clamp(1 - ((ListenerDistance-GameController.MinListenerDistance) / (GameController.MaxListenerDistance - GameController.MinListenerDistance)),0,1);
     }
 }

@@ -7,9 +7,6 @@ public class Mushroom : MonoBehaviour
     public AudioSource AudioSourceMushroom;
     public AudioClip[] AudioClipMushroom;
 
-    public float MinListenerDistance=1;
-    public float MaxListenerDistance=25;
-
     private void Update()
     {
       UpdateListener();
@@ -17,20 +14,8 @@ public class Mushroom : MonoBehaviour
 
     public void UpdateListener()
     {
-      float ListenerDistance = Vector3.Distance(transform.position, PlayerController.player.transform.position);
-
-      if (ListenerDistance <= MinListenerDistance)
-      {
-        AudioSourceMushroom.volume = 1;
-      }
-      else if (ListenerDistance > MaxListenerDistance)
-      {
-        AudioSourceMushroom.volume = 0;
-      }
-      else
-      {
-        AudioSourceMushroom.volume = 1 - ((ListenerDistance-MinListenerDistance) / (MaxListenerDistance - MinListenerDistance));
-      }
+		float ListenerDistance = ((Vector2)transform.position - (Vector2)PlayerController.player.transform.position).magnitude;
+		AudioSourceMushroom.volume = Mathf.Clamp(1 - ((ListenerDistance-GameController.MinListenerDistance) / (GameController.MaxListenerDistance - GameController.MinListenerDistance)),0,1);
     }
 
     Animator animator;

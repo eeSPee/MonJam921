@@ -8,31 +8,16 @@ public class TimeDroppable : TimeInput
   public AudioClip AudioClipApplePickup;
   public AudioClip AudioClipAppleThrow;
 
-  public float MinListenerDistance=1;
-  public float MaxListenerDistance=25;
-
   private void Update()
   {
     UpdateListener();
   }
-
-  public void UpdateListener()
-  {
-    float ListenerDistance = Vector3.Distance(transform.position, PlayerController.player.transform.position);
-
-    if (ListenerDistance <= MinListenerDistance)
+  
+    public void UpdateListener()
     {
-      AudioSourceApple.volume = 1;
+		float ListenerDistance = ((Vector2)transform.position - (Vector2)PlayerController.player.transform.position).magnitude;
+		AudioSourceApple.volume = Mathf.Clamp(1 - ((ListenerDistance-GameController.MinListenerDistance) / (GameController.MaxListenerDistance - GameController.MinListenerDistance)),0,1);
     }
-    else if (ListenerDistance > MaxListenerDistance)
-    {
-      AudioSourceApple.volume = 0;
-    }
-    else
-    {
-      AudioSourceApple.volume = 1 - ((ListenerDistance-MinListenerDistance) / (MaxListenerDistance - MinListenerDistance));
-    }
-  }
 
     Collider2D[] colliders;
     protected override void Awake()

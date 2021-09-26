@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    /* TODO
-	 * BG
-	 * mushrooms
-     * trumpet enemy
-     * */
+
+    public static float MinListenerDistance = 1;
+    public static float MaxListenerDistance = 25;
 
     public static GameController main;
     int gameRound = 1;

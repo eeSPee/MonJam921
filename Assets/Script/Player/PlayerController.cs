@@ -9,7 +9,7 @@ public class PlayerController : TimeCritter
     public static PlayerController player;
 
     Vector2 MoveSpeed = new Vector2(6,6);
-    float JumpSpeed = 12;
+    float JumpSpeed = 15;
     public bool registermovement = false;
     protected float delay = 0;
 
@@ -32,9 +32,6 @@ public class PlayerController : TimeCritter
     public AudioClip AudioClipSlow;
     public AudioClip AudioClipRewind;
     public AudioClip AudioClipHurt;
-
-    public float MinListenerDistance=1;
-    public float MaxListenerDistance=25;
 
     public TimeInteractable interactable;
     protected override void Awake()
@@ -359,19 +356,10 @@ public class PlayerController : TimeCritter
     }
     public void UpdateListener()
     {
-      float ListenerDistance = Vector3.Distance(transform.position, player.transform.position);
-
-      if (ListenerDistance <= MinListenerDistance)
-      {
-        AudioSourcePlayer.volume = 1;
-      }
-      else if (ListenerDistance > MaxListenerDistance)
-      {
-        AudioSourcePlayer.volume = 0;
-      }
-      else
-      {
-        AudioSourcePlayer.volume = 1 - ((ListenerDistance-MinListenerDistance) / (MaxListenerDistance - MinListenerDistance));
-      }
+		if (!IsOriginal())
+		{
+			float ListenerDistance = ((Vector2)transform.position - (Vector2)PlayerController.player.transform.position).magnitude;
+			AudioSourcePlayer.volume = Mathf.Clamp(1 - ((ListenerDistance-GameController.MinListenerDistance) / (GameController.MaxListenerDistance - GameController.MinListenerDistance)),0,1);
+		}
     }
 }
