@@ -37,6 +37,10 @@ public class HunterEnemy : TimeEnemy
         ScanForTargets();
         ChangeState(State.idle);
         lastStateUpdate = 0;
+        ForgetTarget();
+    }
+    void ForgetTarget()
+    {
         target = null;
     }
     void Update()
@@ -97,7 +101,7 @@ public class HunterEnemy : TimeEnemy
     }
     public bool IsInSight(GameObject target)
     {
-        return Mathf.Abs(transform.position.y - target.transform.position.y) <= sightrange.y && Mathf.Abs(transform.position.x - target.transform.position.x) <= sightrange.x;
+        return target.activeSelf && Mathf.Abs(transform.position.y - target.transform.position.y) <= sightrange.y && Mathf.Abs(transform.position.x - target.transform.position.x) <= sightrange.x;
     }
     void HandleMovement()
     {
@@ -210,7 +214,7 @@ public class HunterEnemy : TimeEnemy
                     player.Delay(AttackDelay);
                     //Pause(5 + (player.IsOriginal() ? 0 : AttackDelay));
                     Pause(5 + AttackDelay);
-                    target = null;
+                    ForgetTarget();
                     animator.SetTrigger("Bite");
                     AudioSourceSpider.PlayOneShot(AudioClipBite);
                     ChangeState(State.standing);

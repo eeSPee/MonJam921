@@ -108,7 +108,7 @@ public class GameController : MonoBehaviour
     public void HandleReset()
     {
         Debug.Log("PLAYER RESET");
-        if (IsGameOver())
+        if (IsGameOver() || GetRemainingRoundTime()<.33f)
         {
             Scene currentscene = SceneManager.GetActiveScene(); 
             SceneManager.LoadScene(currentscene.name);

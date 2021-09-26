@@ -129,10 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 47a119e32d346904faa57f68666ef237, type: 3}
     - target: {fileID: 2911386400885589881, guid: c9f8bd78ff78293448d35a10ae461ebf, type: 3}
       propertyPath: m_Text
-      value: 'Text text text text text text text text text
-
-        text text text
-        text text text text text text'
+      value: Spiders like Apples!
       objectReference: {fileID: 0}
     - target: {fileID: 3087578736985630221, guid: c9f8bd78ff78293448d35a10ae461ebf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -204,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: -3159963330678721857, guid: 44bd1596208aa68408ec59d5010c4aa4, type: 3}
     - target: {fileID: 9015496319942916835, guid: c9f8bd78ff78293448d35a10ae461ebf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9f8bd78ff78293448d35a10ae461ebf, type: 3}

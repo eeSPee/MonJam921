@@ -8,9 +8,8 @@ public class PlayerController : TimeCritter
     public static int randomHat;
     public static PlayerController player;
 
-    float hSpeed = 6;
-    Vector2 airSpeed = new Vector2(6,6);
-    float JumpSpeed = 15;
+    Vector2 MoveSpeed = new Vector2(6,6);
+    float JumpSpeed = 12;
     public bool registermovement = false;
     protected float delay = 0;
 
@@ -81,7 +80,7 @@ public class PlayerController : TimeCritter
     }
     public float GetMovementSpeed()
     {
-        return hSpeed * (IsSlowed() ? .33f : 1f);
+        return MoveSpeed.x * (IsSlowed() ? .33f : 1f);
     }
     public void HandleMovement()
     {
@@ -115,7 +114,7 @@ public class PlayerController : TimeCritter
         }
         else
         {
-            rigidbody.velocity = new Vector2(input.x * airSpeed.x, rigidbody.velocity .y + input.y * airSpeed.y * Time.deltaTime ) ;
+            rigidbody.velocity = new Vector2(input.x * GetMovementSpeed(), rigidbody.velocity .y + input.y * MoveSpeed.y * Time.deltaTime ) ;
             //rigidbody.velocity += new  Vector2(input.x * airSpeed.x, input.y* airSpeed.y) * Time.deltaTime;
             if (input.z != 0)
             {
