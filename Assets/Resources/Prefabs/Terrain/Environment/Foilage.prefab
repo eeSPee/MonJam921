@@ -124,9 +124,9 @@ MonoBehaviour:
   m_Spline:
     m_IsOpenEnded: 1
     m_ControlPoints:
-    - position: {x: -2, y: 0, z: 0}
-      leftTangent: {x: -0.9738884, y: -0.9367374, z: -0}
-      rightTangent: {x: 0.8658923, y: 0.83286107, z: 0}
+    - position: {x: 0.8092272, y: -2.432991, z: 0}
+      leftTangent: {x: -0.9738884, y: -0.93673754, z: 0}
+      rightTangent: {x: 0.5534773, y: 0.5323639, z: 0}
       mode: 1
       height: 1
       bevelCutoff: 0
@@ -134,19 +134,9 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 0, y: 0, z: 0}
-      leftTangent: {x: -0.92568946, y: 0.003089726, z: -0}
-      rightTangent: {x: 0.92568946, y: -0.003089726, z: 0}
-      mode: 1
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-      m_CornerMode: 1
-    - position: {x: 2, y: 0, z: 0}
-      leftTangent: {x: -0.78340197, y: 0.751823, z: 0}
-      rightTangent: {x: 0.6651766, y: -0.6383633, z: -0}
+    - position: {x: 2.7841444, y: -1.780849, z: 0}
+      leftTangent: {x: -0.33398962, y: 0.0011148453, z: 0}
+      rightTangent: {x: 0.92568946, y: -0.0030899048, z: 0}
       mode: 1
       height: 1
       bevelCutoff: 0
