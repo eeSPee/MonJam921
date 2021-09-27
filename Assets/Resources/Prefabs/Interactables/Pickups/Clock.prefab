@@ -135,6 +135,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: b38a8bf8e188ef649942cfe16fb3af67, type: 3}
     - target: {fileID: -691163281976892976, guid: c2a168321545b6e459a44cff20dc37e6, type: 3}
+      propertyPath: AudioClipPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: b38a8bf8e188ef649942cfe16fb3af67, type: 3}
+    - target: {fileID: -691163281976892976, guid: c2a168321545b6e459a44cff20dc37e6, type: 3}
       propertyPath: AudioSourceGoal
       value: 
       objectReference: {fileID: 0}
