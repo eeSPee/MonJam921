@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
-        GUIController.main.UpdateProgressBar(gameRound);
+        UIProgressTracker.main.UpdateProgressBar(gameRound);
         GameOverUI.main.gameObject.SetActive(false);
         StartNewGame();
     }
@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
         PlayerController.player.AudioSourcePlayer.PlayOneShot(PlayerController.player.AudioClipRewind);
         PlayerController.player.RewriteHistory();
         gameRound++;
-        GUIController.main.UpdateProgressBar(gameRound);
+        UIProgressTracker.main.UpdateProgressBar(gameRound);
     }
     public bool IsGameOver()
     {
@@ -78,6 +78,7 @@ public class GameController : MonoBehaviour
         {
             entity.TimeReset();
         }
+        UIProgressTracker.main.ResetProgress();
     }
     public CloneController ClonePlayer(PlayerController Spieler)
     {

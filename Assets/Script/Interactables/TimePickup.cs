@@ -26,5 +26,6 @@ public class TimePickup : TimeInteractable
     {
         base.ChangeState(value);
         gameObject.SetActive(state);
+        UIProgressTracker.main.IncrementProgress(Important);
     }
 }

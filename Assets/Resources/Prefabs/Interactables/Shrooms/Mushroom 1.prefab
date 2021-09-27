@@ -224,8 +224,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e6c86e62038d1e94abfd4c533034b31b, type: 3}
   - {fileID: 8300000, guid: d7f2803093e828042bb8922fccab1df1, type: 3}
   - {fileID: 8300000, guid: 47a119e32d346904faa57f68666ef237, type: 3}
-  MinListenerDistance: 1
-  MaxListenerDistance: 25
 --- !u!82 &8695039606152921099
 AudioSource:
   m_ObjectHideFlags: 0
@@ -434,7 +432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3457005521146698039
 Transform:
   m_ObjectHideFlags: 0

@@ -8,8 +8,8 @@ public class PlayerController : TimeCritter
     public static int randomHat;
     public static PlayerController player;
 
-    Vector2 MoveSpeed = new Vector2(6,6);
-    float JumpSpeed = 15;
+     Vector2 MoveSpeed = new Vector2(6,6);
+     float JumpSpeed = 12;
     public bool registermovement = false;
     protected float delay = 0;
 

@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc1a8aee8f6e0a488a612a15a4f82fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roundCount: 3
+  roundTime: 30
