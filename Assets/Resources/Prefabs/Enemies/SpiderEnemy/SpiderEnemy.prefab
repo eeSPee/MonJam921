@@ -186,6 +186,7 @@ MonoBehaviour:
   last_grounded: -1
   FaceRight: 1
   lastSafePosition: {x: 0, y: 0, z: 0}
+  KillImpulse: 11
   Deathplosion: {fileID: 0}
   MoveSpeed: 8
   AudioSourceSpider: {fileID: 2652458153134830267}
