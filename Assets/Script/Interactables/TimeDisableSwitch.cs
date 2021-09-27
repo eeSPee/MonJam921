@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class TimeDisableSwitch : TimeSwitch
 {
-    public bool Reverse = false;
-    public GameObject connectedGameObject;
+    public bool TwoSide = false;
+    public GameObject[] connectedGameObject = new GameObject[0];
     public override void PlayerInteract(PlayerController player)
     {
-        if (state)
+        if (!TwoSide && state)
             return;
         base.PlayerInteract(player);
     }
     public override void ChangeState(bool value)
     {
         base.ChangeState(value);
-        if (connectedGameObject != null)
+        foreach (GameObject connectedGameObject in connectedGameObject)
         {
-            connectedGameObject.SetActive(Reverse ? !value : value);
+            connectedGameObject?.SetActive(!connectedGameObject.activeInHierarchy);
         }
     }
 

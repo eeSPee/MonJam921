@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeForceSwitch : TimeSwitch
 {
     public float durationForce = 0;
-    public ConstantForce2D connectedForce;
+    public ConstantForce2D[] connectedForces = new  ConstantForce2D[0];
     public override void PlayerInteract(PlayerController player)
     {
         if (state)
@@ -15,7 +15,7 @@ public class TimeForceSwitch : TimeSwitch
     public override void ChangeState(bool value)
     {
         base.ChangeState(value);
-        if (connectedForce != null)
+        if (connectedForces.Length>0)
         {
             if (state)
             {
@@ -23,20 +23,32 @@ public class TimeForceSwitch : TimeSwitch
             }
             else
             {
-                connectedForce.enabled = false;
+                foreach (ConstantForce2D connectedForce in connectedForces)
+                {
+                    connectedForce.enabled = false;
+                }
             }
         }
     }
     IEnumerator FireForce()
     {
-        connectedForce.enabled = true;
+        foreach (ConstantForce2D connectedForce in connectedForces)
+        {
+            connectedForce.enabled = true;
+        }
         yield return new WaitForSeconds(durationForce);
-        connectedForce.enabled = false;
+        foreach (ConstantForce2D connectedForce in connectedForces)
+        {
+            connectedForce.enabled = false;
+        }
     }
     public override void TimeReset()
     {
         StopAllCoroutines();
         base.TimeReset();
-        connectedForce.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        foreach (ConstantForce2D connectedForce in connectedForces)
+        {
+            connectedForce.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
     }
 }

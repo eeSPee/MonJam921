@@ -70,9 +70,19 @@ public class TimeEnemy : TimeCritter
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Interactable" && collision.contacts[0].normalImpulse > 7f)
+        if (collision.gameObject.tag == "Interactable" )
+
         {
+            float totalForce = 0;
+
+            for (int iC = 0; iC< collision.contacts.Length; iC++)
+            {
+                totalForce += collision.contacts[iC].normalImpulse;
+            }
+            if (totalForce>7f)
+            { 
             Die();
+            }
         }
     }
     public void Die()

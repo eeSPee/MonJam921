@@ -262,6 +262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock Large
       objectReference: {fileID: 0}
+    - target: {fileID: 4127282191762454561, guid: 9b0ce1a9b71a4d44fb2facdb5fa9451f, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 4639007420375247166, guid: 9b0ce1a9b71a4d44fb2facdb5fa9451f, type: 3}
       propertyPath: m_RootOrder
       value: 0

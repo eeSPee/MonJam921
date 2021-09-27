@@ -100,7 +100,7 @@ public class PlayerController : TimeCritter
             {
                 if (myPickup != null)
                 {
-                    DropItem(true);
+                    DropItem(input.y >= 0);
                 }
                 else if (interactable != null)
                 {
@@ -120,7 +120,7 @@ public class PlayerController : TimeCritter
                     last_interact = Time.time + .3f;
                     if (myPickup != null)
                     {
-                        DropItem(false);
+                        DropItem(input.y >= 0);
                     }
                 }
             }

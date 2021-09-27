@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &395417885222195015
+--- !u!1001 &7713781927308482017
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2489751852396885698, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
       propertyPath: m_Name
-      value: Box Medium
+      value: Box Large
       objectReference: {fileID: 0}
     - target: {fileID: 2489751852396885705, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
       propertyPath: m_RootOrder
@@ -57,47 +57,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2489751852396885708, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
       propertyPath: m_Mass
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 2489751852396885710, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
-      propertyPath: m_Size.x
-      value: 2.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489751852396885710, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
-      propertyPath: m_Size.y
-      value: 1.9466667
+    - target: {fileID: 2489751852396885708, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2489751852396885710, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1090193005561696298, guid: 8f51ad1ce335e3a47a9f7e502e0a27dc, type: 3}
+      objectReference: {fileID: 7499154508442906066, guid: 8f51ad1ce335e3a47a9f7e502e0a27dc, type: 3}
     - target: {fileID: 2489751852396885711, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
       propertyPath: m_Size.x
-      value: 1.9
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 2489751852396885711, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
       propertyPath: m_Size.y
-      value: 1.9
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 2489751852396885711, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 2.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489751852396885711, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1.9466667
+      propertyPath: m_Offset.x
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2489751852396885711, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 2.08
+      value: 2.4266667
       objectReference: {fileID: 0}
     - target: {fileID: 2489751852396885711, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.9466667
+      value: 2.5466666
       objectReference: {fileID: 0}
     - target: {fileID: 3663351626241662008, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: ecabd387f66c45d46a7753533ff0e136, type: 2}
+      objectReference: {fileID: 9100000, guid: f3b599f6550567b45894420360a0d81e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e37fafc649d45f64b9c359f2906c2546, type: 3}

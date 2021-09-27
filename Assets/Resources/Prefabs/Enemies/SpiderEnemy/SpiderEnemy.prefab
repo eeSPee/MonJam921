@@ -187,7 +187,7 @@ MonoBehaviour:
   FaceRight: 1
   lastSafePosition: {x: 0, y: 0, z: 0}
   Deathplosion: {fileID: 0}
-  MoveSpeed: 6
+  MoveSpeed: 8
   AudioSourceSpider: {fileID: 2652458153134830267}
   AudioClipGrowlBait: {fileID: 8300000, guid: 2efeedd2ac6d7b94896a4cd76c126305, type: 3}
   AudioClipGrowlPrey: {fileID: 8300000, guid: 932d7d5e16b2e0e4481433aed2103fb8, type: 3}
