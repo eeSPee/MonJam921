@@ -20,12 +20,11 @@ MonoBehaviour:
   StartAVelocity: 0
   state: 0
   Annotation: {fileID: 0}
-  MinListenerDistance: 1
-  MaxListenerDistance: 25
+  SingleUse: 1
   AudioSourceSwitch: {fileID: 8466704062585701403}
   AudioClipSwitch: {fileID: 8300000, guid: 078ffe14079930f40836f2c7d1415762, type: 3}
   durationForce: 0
-  connectedForce: {fileID: 0}
+  connectedForces: []
 --- !u!1001 &2129046303170032245
 PrefabInstance:
   m_ObjectHideFlags: 0

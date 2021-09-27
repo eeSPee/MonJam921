@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimeEnemy : TimeCritter
 {
+    public float KillImpulse = 15;
     Vector2 offset;
     public ParticleSystem Deathplosion;
     public float MoveSpeed = 1f;
@@ -79,7 +80,7 @@ public class TimeEnemy : TimeCritter
             {
                 totalForce += collision.contacts[iC].normalImpulse;
             }
-            if (totalForce>7f)
+            if (totalForce> KillImpulse)
             { 
             Die();
             }

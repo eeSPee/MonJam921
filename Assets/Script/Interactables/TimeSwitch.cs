@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class TimeSwitch : TimeInput
 {
+    public bool SingleUse = false;
     float last_interact_time = -1;
 
     public AudioSource AudioSourceSwitch;
     public AudioClip AudioClipSwitch;
     public override void PlayerInteract(PlayerController player)
     {
+        if (SingleUse && state)
+            return;
         if (last_interact_time < Time.time)
         {
             base.PlayerInteract(player);
-            player.EndInteraction(this);
+            if (SingleUse)
+            {
+                player.EndInteraction(this);
+            }
             last_interact_time = Time.time + .33f;
             AudioSourceSwitch.PlayOneShot(AudioClipSwitch);
         }
@@ -21,7 +27,6 @@ public class TimeSwitch : TimeInput
     public override void ChangeState(bool value)
     {
         base.ChangeState(value);
-        //GetComponent<SpriteRenderer>().color = value ? Color.green : Color.red;
         animator.SetBool("enabled", value);
     }
     public override void TimeReset()
@@ -39,5 +44,5 @@ public class TimeSwitch : TimeInput
     {
 		float ListenerDistance = ((Vector2)transform.position - (Vector2)PlayerController.player.transform.position).magnitude;
 		AudioSourceSwitch.volume = Mathf.Clamp(1 - ((ListenerDistance-GameController.MinListenerDistance) / (GameController.MaxListenerDistance - GameController.MinListenerDistance)),0,1);
-    }
+    } 
 }
