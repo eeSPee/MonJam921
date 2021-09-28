@@ -41,7 +41,7 @@ public class PlayerController : TimeCritter
         base.Awake();
         RewriteHistory();
         registermovement = true;
-        SpawnTime = Mathf.Floor( Time.time);
+        SpawnTime = Time.time;
         last_grounded = Time.time + .1f;
         Hat = transform.Find("Hat Parent").gameObject;
         randomHat = Random.Range(0, 5);
