@@ -90,7 +90,7 @@ MonoBehaviour:
   last_grounded: -1
   FaceRight: 1
   lastSafePosition: {x: 0, y: 0, z: 0}
-  KillImpulse: 10
+  KillImpulse: 7
   Deathplosion: {fileID: 0}
   MoveSpeed: 0.66
   SlowTime: 3
