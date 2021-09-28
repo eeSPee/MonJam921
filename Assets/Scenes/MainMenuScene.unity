@@ -6490,7 +6490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bdf0f6fed1be4479b6e2dee5170d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayScene: MainWorld
+  PlayScene: Tutorial
 --- !u!1 &1745777376
 GameObject:
   m_ObjectHideFlags: 0

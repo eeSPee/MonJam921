@@ -30,7 +30,6 @@ public class Mushroom : MonoBehaviour
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             if (player.IsOriginal())
             {
-            //AudioSourceMushroom.clip = AudioClipMushroom[Random.Range(0, AudioClipMushroom.Length)];
             AudioSourceMushroom.PlayOneShot(AudioClipMushroom[Random.Range(0, AudioClipMushroom.Length)]);
             animator.SetBool("Speaking", true);
             animator.SetFloat("AnimSpeed", 3);
