@@ -147,7 +147,7 @@ MonoBehaviour:
   Annotation: {fileID: 0}
   Important: 0
   AudioSourcePickup: {fileID: 8578189758602776057}
-  AudioClipPickup: {fileID: 8300000, guid: 9aa1fbc5bcede7648bb06f712a7c0b26, type: 3}
+  AudioClipPickup: {fileID: 8300000, guid: 8fd86b82462c00c4bbcea941f9048c64, type: 3}
 --- !u!95 &1653153257143893076
 Animator:
   serializedVersion: 3
