@@ -5,6 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class TimeEntity : MonoBehaviour
 {
+    //--------------------
+    //  TIME ENTITY
+    //--------------------
+    //This script controlls entities and time resets
+
+    //  VARS
+    //  Start_Position, Start_Rotation, StartVelocity, StartAVelocity - initial velocity or position of this entity
+    //  rigidbody, animator - attached components
+    //  FUNCTIONS
+    //  Awake - declares components and imprints on time
+    //  TimeImprint - stores the start values to the current values of this object
+    //  TimeReset - resets the position/velocity of this objects to the values stored
+
     public Vector3 Start_Position;
     public Quaternion Start_Rotation;
 

@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class Mushroom : MonoBehaviour
 {
+    //--------------------
+    //  MUSHROOM
+    //--------------------
+    //This script controlls mushrooms that talk to the player
+
+    //  VARS
+    //  AudioSourceMushroom, animator - components on this object
+    //  AudioClipMushroom - sound to play when it talks
+    //  FUNCTIONS
+    //  UpdateListener - On update, updates volume based to distance to player
+    //  Awake - Declarations
+    //  TimeReset - See TimeEntity
+    //  OnTriggerEnter2D, OnTriggerExit2D - Show/hide the speaking bubble when the player touches my trigger
+
+
     public AudioSource AudioSourceMushroom;
     public AudioClip[] AudioClipMushroom;
 

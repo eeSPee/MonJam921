@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class TimeForceSwitch : TimeSwitch
 {
+    //--------------------
+    //  TIME FORCE SWITCH
+    //--------------------
+    //This script works like a time switch, but triggers a force whenever it is interacted with
+
+    //  VARS
+    //  durationForce - duration of the force when activated
+    //  connectedForces - connected Force2D components that trigger
+    //  FUNCTIONS
+    //  PlayerInteract - see TimeSwitch
+    //  ChangeState - starts the FireForce coroutine
+    //  FireForce - coroutine that enables the connected forces, and after durationForce seconds, disables them
+    //  TimeReset - disables all forces and resets the switch
+
     public float durationForce = 0;
     public ConstantForce2D[] connectedForces = new  ConstantForce2D[0];
     public override void PlayerInteract(PlayerController player)

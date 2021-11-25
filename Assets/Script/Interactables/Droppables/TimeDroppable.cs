@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class TimeDroppable : TimeInput
 {
-  public AudioSource AudioSourceApple;
+    //--------------------
+    //  TIME DROPPABLE
+    //--------------------
+    //This script controlls items that the player can pick up and throw
+
+    //  VARS
+    //  AudioSourceApple - audiosource on this object
+    //  AudioClipApplePickup, AudioClipAppleThrow - sounds that play
+    //  colliders - colliders on this gameobject
+    //  FUNCTIONS
+    //  Awake - declare coliders
+    //  PlayerInteract - On player interaction, make it pick up the item
+    //  ChangeState - also disables colliders
+
+
+    public AudioSource AudioSourceApple;
   public AudioClip AudioClipApplePickup;
   public AudioClip AudioClipAppleThrow;
 

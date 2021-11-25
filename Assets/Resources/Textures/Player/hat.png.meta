@@ -124,12 +124,12 @@ TextureImporter:
       name: hat_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 421
+        x: 65
+        y: 446
         width: 237
         height: 143
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.38314536, y: 0.39084205}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,12 +145,12 @@ TextureImporter:
       name: hat_1
       rect:
         serializedVersion: 2
-        x: 327
-        y: 421
+        x: 347
+        y: 446
         width: 237
         height: 143
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47450468, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -166,12 +166,12 @@ TextureImporter:
       name: hat_2
       rect:
         serializedVersion: 2
-        x: 45
-        y: 233
+        x: 65
+        y: 258
         width: 237
         height: 143
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.36827293, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: hat_3
       rect:
         serializedVersion: 2
-        x: 327
-        y: 233
+        x: 332
+        y: 243
         width: 237
         height: 143
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.38}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: hat_4
       rect:
         serializedVersion: 2
-        x: 45
-        y: 45
+        x: 64
+        y: 69
         width: 237
         height: 143
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.38003644, y: 0.52}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,12 +229,12 @@ TextureImporter:
       name: hat_5
       rect:
         serializedVersion: 2
-        x: 327
-        y: 45
+        x: 347
+        y: 65
         width: 237
         height: 143
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47300816, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

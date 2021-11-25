@@ -5,6 +5,23 @@ using UnityEngine.UI;
 
 public class UIProgressTracker : MonoBehaviour
 {
+    //--------------------
+    //  UI PROGRESS TRACKER
+    //--------------------
+    //This script controlls the UI topleft that tracks player progress
+
+    //  VARS
+    //  ProgressBar, GoalTracker, PickTracker - attached components
+    //  pickups, tpickups, goals, tgoals - Progress and total pickups/objectives
+    //  FUNCTIONS
+    //  Awake - declare components
+    //  InitialCountDown - Count all the current pickups
+    //  UpdateScoreText - change the text on the components
+    //  IncrementProgress - increases the counter and updates text
+    //  GetProgress - get the current pickup/goal progress
+    //  UpdateProgressBar - update the n of icons in the progress bar
+    //  ResetProgress - resets the progress to 0
+
     public static UIProgressTracker main;
     Transform ProgressBar;
     Text GoalTracker;

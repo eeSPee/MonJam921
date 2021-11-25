@@ -3,6 +3,17 @@ using UnityEngine.UI;
 
 public class GUIController : MonoBehaviour
 {
+    //--------------------
+    //  GUI Controller
+    //--------------------
+    //This script controlls the timer on top
+
+    //  VARS
+    //  TimerLabel - Text component of timer
+    //  FUNCTIONS
+    //  Awake - declare components
+    //  UpdateTime - updates the remaining time on the UI
+
     public static GUIController main;
     Text TimerLabel;
     void Awake()

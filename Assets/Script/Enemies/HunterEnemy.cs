@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class HunterEnemy : TimeEnemy
 {
-    public AudioSource AudioSourceSpider;
-    public AudioClip AudioClipGrowlBait;
-    public AudioClip AudioClipGrowlPrey;
-    public AudioClip AudioClipBite;
+    //--------------------
+    //  HUNTER ENEMY
+    //--------------------
+    //This script controlls the behavior of the spider enemies
 
-    TimeEntity target;
-    List<TimeEntity> possibleTargets = new List<TimeEntity>();
-    public Vector2 sightrange = new Vector2(3,1);
-    public float DefenseRadius = .2f;
-    Vector2 defendPosition = Vector2.zero;
+    //  REGIONS
+    //  AiState - handles various ai states; idle, hunting, retreating, eating
+    //  Monobehavior - Monobehavior Calls
+    //  Targeting - Scan for player target, is player in range, and forget target
+    //  Defense - In the retreating/idle state, the spider will patrol an area
+    //  Time Stuff - Time Imprint and Reset
+    //  Attack - pause the player when it touches our collider, or enter the sleeping state when reaching an apple
+    //  Audio - play sound when player touched
+
+    #region AiState
     public State currentstate = State.idle;
    public  enum State
     {
@@ -22,29 +27,6 @@ public class HunterEnemy : TimeEnemy
         hunting,
         retreating,
         eating
-    }
-    void Start()
-    {
-        defendPosition = transform.position;
-        ScanForTargets();
-    }
-    public override void TimeReset()
-    {
-        base.TimeReset();
-        ScanForTargets();
-        ChangeState(State.idle);
-        lastStateUpdate = 0;
-        ForgetTarget();
-    }
-    void ForgetTarget()
-    {
-        target = null;
-    }
-    void Update()
-    {
-        HandleState();
-        HandleMovement();
-        UpdateListener();
     }
     float lastStateUpdate = 0;
     void HandleState()
@@ -70,35 +52,58 @@ public class HunterEnemy : TimeEnemy
                     if (IsInSight(possibleTarget.gameObject))
                     {
                         target = possibleTarget;
-                        ChangeState( State.hunting);
+                        ChangeState(State.hunting);
                         if (target.gameObject.tag == "Bait")
                         {
-                          AudioSourceSpider.PlayOneShot(AudioClipGrowlBait);
+                            AudioSourceSpider.PlayOneShot(AudioClipGrowlBait);
                         }
                         else if (target.gameObject.tag == "Player")
                         {
-                          AudioSourceSpider.PlayOneShot(AudioClipGrowlPrey);
+                            AudioSourceSpider.PlayOneShot(AudioClipGrowlPrey);
                         }
                         break;
                     }
                 }
-                if (currentstate == State.retreating && Mathf.Abs(transform.position.x - defendPosition.x) < Mathf.Max(DefenseRadius,1))
+                if (currentstate == State.retreating && Mathf.Abs(transform.position.x - defendPosition.x) < Mathf.Max(DefenseRadius, 1))
                 {
-                    ChangeState ( State.idle);
+                    ChangeState(State.idle);
                 }
                 break;
             case State.hunting:
-                if (target==null || !IsInSight(target.gameObject))
+                if (target == null || !IsInSight(target.gameObject))
                 {
-                    ChangeState (State.retreating);
+                    ChangeState(State.retreating);
                     return;
                 }
                 break;
         }
     }
-    public bool IsInSight(GameObject target)
+    public void ChangeState(State newState)
     {
-        return target.activeSelf && Mathf.Abs(transform.position.y - target.transform.position.y) <= sightrange.y && Mathf.Abs(transform.position.x - target.transform.position.x) <= sightrange.x;
+        currentstate = newState;
+        switch (currentstate)
+        {
+            case State.idle:
+                animator.SetFloat("walk_speed", .33f);
+                animator.SetBool("chewing", false);
+                break;
+            case State.standing:
+                animator.SetFloat("walk_speed", 0);
+                animator.SetBool("chewing", false);
+                break;
+            case State.retreating:
+                animator.SetFloat("walk_speed", .5f);
+                animator.SetBool("chewing", false);
+                break;
+            case State.hunting:
+                animator.SetFloat("walk_speed", 1);
+                animator.SetBool("chewing", false);
+                break;
+            case State.eating:
+                animator.SetBool("chewing", true);
+                Pause(100);
+                break;
+        }
     }
     void HandleMovement()
     {
@@ -152,32 +157,31 @@ public class HunterEnemy : TimeEnemy
         }
         rigidbody.velocity = velocity;
     }
-    public void ChangeState(State newState)
+    #endregion
+    #region MonoBehavior
+    void Start()
     {
-        currentstate = newState;
-        switch (currentstate)
-        {
-            case State.idle:
-                animator.SetFloat("walk_speed", .33f);
-                animator.SetBool("chewing", false);
-                break;
-            case State.standing:
-                animator.SetFloat("walk_speed", 0);
-                animator.SetBool("chewing", false);
-                break;
-            case State.retreating:
-                animator.SetFloat("walk_speed", .5f);
-                animator.SetBool("chewing", false);
-                break;
-            case State.hunting:
-                animator.SetFloat("walk_speed", 1);
-                animator.SetBool("chewing", false);
-                break;
-            case State.eating:
-                animator.SetBool("chewing", true);
-                Pause(100);
-                break;
-        }
+        defendPosition = transform.position;
+        ScanForTargets();
+    }
+    void Update()
+    {
+        HandleState();
+        HandleMovement();
+        UpdateListener();
+    }
+    #endregion
+    #region Targeting
+    public Vector2 sightrange = new Vector2(3, 1);
+    TimeEntity target;
+    List<TimeEntity> possibleTargets = new List<TimeEntity>();
+    void ForgetTarget()
+    {
+        target = null;
+    }
+    public bool IsInSight(GameObject target)
+    {
+        return target.activeSelf && Mathf.Abs(transform.position.y - target.transform.position.y) <= sightrange.y && Mathf.Abs(transform.position.x - target.transform.position.x) <= sightrange.x;
     }
     public void ScanForTargets()
     {
@@ -196,6 +200,23 @@ public class HunterEnemy : TimeEnemy
             }
         }
     }
+    #endregion
+    #region Defense
+    public float DefenseRadius = .2f;
+    Vector2 defendPosition = Vector2.zero;
+    #endregion
+    #region Time Stuff
+    public override void TimeReset()
+    {
+        base.TimeReset();
+        ScanForTargets();
+        ChangeState(State.idle);
+        lastStateUpdate = 0;
+        ForgetTarget();
+    }
+
+    #endregion
+    #region Attack
     public float AttackDelay = 1;
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -229,9 +250,17 @@ public class HunterEnemy : TimeEnemy
             }
         }
     }
+    #endregion
+    #region Audio
+
+    public AudioSource AudioSourceSpider;
+    public AudioClip AudioClipGrowlBait;
+    public AudioClip AudioClipGrowlPrey;
+    public AudioClip AudioClipBite;
     public void UpdateListener()
     {
 		float ListenerDistance = ((Vector2)transform.position - (Vector2)PlayerController.player.transform.position).magnitude;
 		AudioSourceSpider.volume = Mathf.Clamp(1 - ((ListenerDistance-GameController.MinListenerDistance) / (GameController.MaxListenerDistance - GameController.MinListenerDistance)),0,1);
     }
+    #endregion
 }

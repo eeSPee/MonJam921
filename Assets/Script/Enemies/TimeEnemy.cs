@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class TimeEnemy : TimeCritter
 {
-    public float KillImpulse = 15;
-    Vector2 offset;
-    public ParticleSystem Deathplosion;
-    public float MoveSpeed = 1f;
-    protected bool Walking = true;
-    protected float stunTime = 0;
+    //--------------------
+    //  TIME ENEMY
+    //--------------------
+    //This script controlls basic enemy behavior
+
+    //  REGIONS
+    //  Monobehavior - Declarations, and 
+    //  Movement - handle movement if not stunned
+    //  TimeStuff - TimeEntity related
+    //  Stuns - set creature stunned, and stun time
+    //  Collision - turn when touching walls, and die when crushed by large objects
+    //  Death - die with a nice explosion particle, and reset/revive
+
+    #region Monobehavior
     protected override void Awake()
     {
         base.Awake();
@@ -18,19 +26,15 @@ public class TimeEnemy : TimeCritter
         Deathplosion = deathefx.GetComponent<ParticleSystem>();
         offset = GetComponent<CircleCollider2D>().offset;
     }
-    public override void TimeReset()
-    {
-        UnDie();
-        base.TimeReset();
-        Walking = true;
-        stunTime = 0;
-        StopAllCoroutines();
-    }
-    public bool IsStunned()
-    {
-        return stunTime > Time.time;
-    }
     private void Update()
+    {
+        Walk();
+    }
+    #endregion
+    #region Movement
+    public float MoveSpeed = 1f;
+    protected bool Walking = true;
+    public void Walk()
     {
         Vector2 velocity = rigidbody.velocity;
 
@@ -51,10 +55,30 @@ public class TimeEnemy : TimeCritter
         }
         rigidbody.velocity = velocity;
     }
+    #endregion
+    #region TimeStuff
+    public override void TimeReset()
+    {
+        UnDie();
+        base.TimeReset();
+        Walking = true;
+        stunTime = 0;
+        StopAllCoroutines();
+    }
+    #endregion
+    #region Stuns
+    public bool IsStunned()
+    {
+        return stunTime > Time.time;
+    }
     public void Pause(float pausetime)
     {
-        stunTime = Time.time+pausetime;
+        stunTime = Time.time + pausetime;
     }
+    protected float stunTime = 0;
+    #endregion
+    #region Collision
+    Vector2 offset;
     public override void OnCollisionStay2D(Collision2D collision)
     {
         foreach (ContactPoint2D contact in collision.contacts)
@@ -86,6 +110,10 @@ public class TimeEnemy : TimeCritter
             }
         }
     }
+    #endregion
+    #region Death
+    public ParticleSystem Deathplosion;
+    public float KillImpulse = 15;
     public void Die()
     {
         gameObject.SetActive(false);
@@ -100,4 +128,5 @@ public class TimeEnemy : TimeCritter
     {
         gameObject.SetActive(true);
     }
+    #endregion
 }

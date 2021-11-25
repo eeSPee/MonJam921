@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class CloneController : PlayerController
 {
+    //--------------------
+    //  CLONE CONTROLLER
+    //--------------------
+    //This script controlls clones that mimic the player's movement
+
+    //  REGIONS
+    //  Monobehavior - Declarations
+    //  Input - override player input
+    //  Cloning - clone from player, and override isOriginal
+    //  Time Stuff - reset the clone without causing damage
+
+    #region MonoBehavior
     protected override void Awake()
     {
         Display = GetComponent<SpriteRenderer>();
@@ -13,6 +25,8 @@ public class CloneController : PlayerController
         registermovement = false;
         Hat = transform.Find("Hat Parent").gameObject;
     }
+    #endregion
+    #region Input
     protected override void HandleInput()
     {
         if (recordstate >= 0 && recordstate < History.Count)
@@ -28,6 +42,8 @@ public class CloneController : PlayerController
             }
         }
     }
+    #endregion
+    #region Cloning
     public void MimicPlayer(PlayerController other)
     {
         name = "Clone of " + other.name + " at "+ Time.time;
@@ -42,12 +58,12 @@ public class CloneController : PlayerController
 
         Hat.GetComponentInChildren<SpriteRenderer>().sprite = other.Hat.GetComponentInChildren<SpriteRenderer>().sprite;
     }
-    /*public override void Kill()
+    public override bool IsOriginal()
     {
-        enabled = false;
-        defeated = true;
-        Explode();
-    }*/
+        return false;
+    }
+    #endregion
+    #region Time Stuff
     public override void TimeReset()
     {
         registermovement = false;
@@ -89,8 +105,5 @@ public class CloneController : PlayerController
         rigidbody.velocity = pastvelocity;
         animator.SetBool("stunned", false);
     }*/
-    public override bool IsOriginal()
-    {
-        return false;
-    }
+    #endregion
 }

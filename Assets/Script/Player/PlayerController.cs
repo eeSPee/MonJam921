@@ -5,35 +5,30 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PlayerController : TimeCritter
 {
-    public static int randomHat;
+    //--------------------
+    //  CLONE CONTROLLER
+    //--------------------
+    //This script controlls the player
+
+    //  REGIONS
+    //  Monobehavior - Declarations on awake, and frame by frame
+    //  Input - handle player imput, and store it in History
+    //  Cloning - clone from player, and override isOriginal
+    //  Movement - walking, jumping
+    //  Animatior - handle player animations (jump, fall, walk, etc)
+    //  Time Stuff - Time Entity Stuff
+    //  History - Record movement and handle delays
+    //  Crowd Control - Handles slows and player pauses when the player is hit by enemies/deathzone
+    //  Clones - clone related, and checks for original
+    //  Pickups - handles pickups and picking up/carrying items like apples
+    //  Interactions - Interact with switches and other objects
+    //  Hats - visual assign a hat to the player and clones
+    //  Audio - audio related stuff
+
+    #region MonoBehavior
     public static PlayerController player;
-
-     Vector2 MoveSpeed = new Vector2(6,6);
-     float JumpSpeed = 12;
-    public bool registermovement = false;
-    protected float delay = 0;
-
-    public int playerID = 0;
-    public float SpawnTime = 0;
-
-    public bool defeated = false;
-    public Vector3 input = Vector3.zero;
-    public int recordstate = 0;
-    public List<Vector4> History = new List<Vector4>();
-
     protected SpriteRenderer Display;
     protected Collider2D Collision;
-    public float last_jump = -1;
-    public float last_interact = -1;
-    float slowedTime = 0;
-
-    public AudioSource AudioSourcePlayer;
-    public AudioClip AudioClipJump;
-    public AudioClip AudioClipSlow;
-    public AudioClip AudioClipRewind;
-    public AudioClip AudioClipHurt;
-
-    public TimeInteractable interactable;
     protected override void Awake()
     {
       Display = GetComponent<SpriteRenderer>();
@@ -46,7 +41,21 @@ public class PlayerController : TimeCritter
         Hat = transform.Find("Hat Parent").gameObject;
         randomHat = Random.Range(0, 5);
     }
-
+    private void FixedUpdate()
+    {
+        HandleInput();
+        HandleMovement();
+    }
+    private void Update()
+    {
+        CarryPickup();
+        UpdateAnimator();
+        UpdateListener();
+    }
+    #endregion
+    #region Input
+    public Vector3 input = Vector3.zero;
+    public int recordstate = 0;
     protected virtual void HandleInput()
     {
         if (!registermovement)
@@ -64,21 +73,15 @@ public class PlayerController : TimeCritter
         }
         input = newinput;
     }
-    private void FixedUpdate()
-    {
-        HandleInput();
-        HandleMovement();
-    }
-    private void Update()
-    {
-        CarryPickup();
-        UpdateAnimator();
-        UpdateListener();
-    }
+    #endregion
+    #region Movement
+    Vector2 MoveSpeed = new Vector2(6, 6);
+    float JumpSpeed = 12;
     public float GetMovementSpeed()
     {
         return MoveSpeed.x * (IsSlowed() ? .33f : 1f);
     }
+    public float last_jump = -1;
     public void HandleMovement()
     {
         if (IsGrounded())
@@ -125,7 +128,27 @@ public class PlayerController : TimeCritter
                 }
             }
         }
-    }
+    }/*
+        public virtual void Kill()
+        {
+            if (!registermovement)
+            {
+                return;
+            }
+            defeated = true;
+            enabled = false;
+            registermovement = false;
+            History.Add(new Vector4(input.x, input.y, input.z, GetEffectiveTime()));
+            History.Add(new Vector4(0, 0, 0, -1));
+            Explode();
+        }
+        public void Explode()
+        {
+            GameObject poof = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Effects/Explosion"));
+            poof.transform.position = transform.position;
+        }*/
+    #endregion
+    #region Animator
     public void UpdateAnimator()
     {
         bool grounded = last_grounded+.05f > Time.time;
@@ -144,25 +167,11 @@ public class PlayerController : TimeCritter
             animator.SetFloat("ySpeed", rigidbody.velocity.y);
         }
     }
-/*
-    public virtual void Kill()
-    {
-        if (!registermovement)
-        {
-            return;
-        }
-        defeated = true;
-        enabled = false;
-        registermovement = false;
-        History.Add(new Vector4(input.x, input.y, input.z, GetEffectiveTime()));
-        History.Add(new Vector4(0, 0, 0, -1));
-        Explode();
-    }
-    public void Explode()
-    {
-        GameObject poof = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Effects/Explosion"));
-        poof.transform.position = transform.position;
-    }*/
+    #endregion
+    
+    #region Time Stuff
+    public bool registermovement = false;
+    public bool defeated = false;
     public override void TimeReset()
     {
         last_jump = -1;
@@ -186,6 +195,10 @@ public class PlayerController : TimeCritter
             EquiptRandomHat();
         }
     }
+    #endregion
+    #region History
+    protected float delay = 0;
+    public List<Vector4> History = new List<Vector4>();
     public float GetEffectiveTime()
     {
         return Time.time - SpawnTime - delay;
@@ -197,6 +210,26 @@ public class PlayerController : TimeCritter
         History.Clear();
         History.Add(Vector4.zero);
     }
+    public float GetDelay()
+    {
+        return delay;
+    }
+    public void Delay(float t)
+    {
+
+        TimeUnfreeze();
+
+        if (t == 0)
+        {
+            return;
+        }
+        delay += t;
+        //slowedTime -= t;
+        PauseCoroutine = StartCoroutine(Pause(t));
+    }
+    #endregion
+    #region Crowd Control
+    float slowedTime = 0;
     public void Slow(float dur)
     {
         slowedTime = Time.time + dur;
@@ -225,19 +258,6 @@ public class PlayerController : TimeCritter
         Debug.Log("Delay " + name + " by " + t + " seconds");
     }*/
     Vector2 pastvelocity = Vector2.zero;
-    public void Delay(float t)
-    {
-
-            TimeUnfreeze();
-
-        if (t == 0)
-        {
-            return;
-        }
-        delay += t;
-        //slowedTime -= t;
-        PauseCoroutine = StartCoroutine(Pause(t));
-    }
     Coroutine PauseCoroutine;
     public IEnumerator Pause(float duration)
     {
@@ -285,15 +305,16 @@ public class PlayerController : TimeCritter
             Time.timeScale = 1;
         }
     }
-
-    public float GetDelay()
-    {
-        return delay;
-    }
+    #endregion
+    #region Clones
+    public int playerID = 0;
+    public float SpawnTime = 0;
     public virtual bool IsOriginal()
     {
         return true;
     }
+    #endregion
+    #region PickUps
     TimeDroppable myPickup;
     public void PickUpItem(TimeDroppable pickup)
     {
@@ -327,6 +348,10 @@ public class PlayerController : TimeCritter
             myPickup.transform.position = new Vector3(transform.position.x, transform.position.y, myPickup.transform.position.z);
         }
     }
+    #endregion
+    #region Interactions
+    public float last_interact = -1;
+    public TimeInteractable interactable;
     public void StartInteraction(TimeInteractable mObject)
     {
         interactable = mObject;
@@ -342,6 +367,9 @@ public class PlayerController : TimeCritter
             interactable = null;
         }
     }
+    #endregion
+    #region Hats
+    public static int randomHat;
     public GameObject Hat;
     public void EquiptRandomHat()
     {
@@ -354,6 +382,14 @@ public class PlayerController : TimeCritter
         base.FaceDirection(right);
         Hat.transform.localScale = new Vector3(right ? 1 : -1, 1, 1);
     }
+    #endregion
+    #region Audio
+
+    public AudioSource AudioSourcePlayer;
+    public AudioClip AudioClipJump;
+    public AudioClip AudioClipSlow;
+    public AudioClip AudioClipRewind;
+    public AudioClip AudioClipHurt;
     public void UpdateListener()
     {
 		if (!IsOriginal())
@@ -362,4 +398,5 @@ public class PlayerController : TimeCritter
 			AudioSourcePlayer.volume = Mathf.Clamp(1 - ((ListenerDistance-GameController.MinListenerDistance) / (GameController.MaxListenerDistance - GameController.MinListenerDistance)),0,1);
 		}
     }
+    #endregion
 }

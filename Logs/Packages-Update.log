@@ -67,3 +67,11 @@ The following packages were updated:
   com.unity.textmeshpro from version 3.0.3 to 3.0.6
   com.unity.timeline from version 1.5.1-pre.3 to 1.5.6
   com.unity.visualscripting from version 1.5.1-pre.3 to 1.6.1
+
+=== Thu Nov 25 12:18:07 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.vscode from version 1.2.3 to 1.2.4

@@ -7,6 +7,20 @@ public class CameraController : MonoBehaviour
     public bool StretchTexture = true;
     GameObject followTarget;
 
+    //--------------------
+    //  CAMERA CONTROLLER
+    //--------------------
+    //This script makes the camera follow a gameobject
+
+    //  VARS
+    //  StretchTexture - should stretch or tile the overlay texture
+    //  followTarget - gameobject being followed
+    //  FUNCTIONS
+    //  Awake - also in charge of the paper overlay
+    //  TrackTarget - set following gameobject
+    //  Update
+
+
     private void Awake()
     {
         Camera cam = GetComponent<Camera>();
@@ -28,7 +42,7 @@ public class CameraController : MonoBehaviour
         followTarget = target;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (followTarget!=null)
             transform.position = new Vector3(followTarget.transform.position.x, followTarget.transform.position.y, -10);

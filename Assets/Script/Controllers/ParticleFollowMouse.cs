@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ParticleFollowMouse : MonoBehaviour
 {
+    //--------------------
+    //  PARTICLE FOLLOW MOUSE
+    //--------------------
+    //This script controlls mouse particles in the main menu (unused?)
+
+    //  FUNCTIONS
+    //  FixedUpdate - changes to mouse position
 
     void FixedUpdate()
     {

@@ -5,16 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    //--------------------
+    //  GAME CONTROLLER
+    //--------------------
+    //This script controlls the game loop and reset
 
+    //  REGIONS
+    //  Audio - Audio static vars
+    //  MonoBehavior - Basic Monobehavior functions, Start updates UI, Update checks reset
+    //  Game Loop - The game loop, starts the game, countdown and reset the time
+
+    #region Audio
     public static float MinListenerDistance = 1;
     public static float MaxListenerDistance = 25;
-
-    public static GameController main;
-    int gameRound = 1;
-    float newGameTime = 0;
-    public int roundCount = 3;
-    public float roundTime = 30;
+    #endregion
+    #region MonoBehavior
     List<TimeEntity> timeEntities = new List<TimeEntity>();
+    public static GameController main;
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -31,6 +38,19 @@ public class GameController : MonoBehaviour
         GameOverUI.main.gameObject.SetActive(false);
         StartNewGame();
     }
+    public void Update()
+    {
+        if (Input.GetButtonUp("Reset"))
+        {
+            HandleReset();
+        }
+    }
+    #endregion
+    #region Game Loop
+    int gameRound = 1;
+    float newGameTime = 0;
+    public int roundCount = 3;
+    public float roundTime = 30;
     Coroutine runningTime;
     public void StartNewGame()
     {
@@ -80,6 +100,25 @@ public class GameController : MonoBehaviour
         }
         UIProgressTracker.main.ResetProgress();
     }
+    public float GetRemainingRoundTime()
+    {
+        // return Time.time - newGameTime + PlayerController.player.GetDelay();
+        return Time.time - newGameTime;
+    }
+    public void HandleReset()
+    {
+        if (IsGameOver() || GetRemainingRoundTime() < .33f)
+        {
+            Scene currentscene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentscene.name);
+        }
+        else
+        {
+            StartNewGame();
+        }
+    }
+    #endregion
+    #region Player Clones
     public CloneController ClonePlayer(PlayerController Spieler)
     {
         Debug.Log("TimeController - Clone " + Spieler.name);
@@ -92,29 +131,5 @@ public class GameController : MonoBehaviour
 
         return Controller;
     }
-    public float GetRemainingRoundTime()
-    {
-        // return Time.time - newGameTime + PlayerController.player.GetDelay();
-        return Time.time - newGameTime;
-    }
-    public void Update()
-    {
-        if (Input.GetButtonUp("Reset"))
-        {
-            HandleReset();
-        }
-    }
-    public void HandleReset()
-    {
-        Debug.Log("PLAYER RESET");
-        if (IsGameOver() || GetRemainingRoundTime()<.33f)
-        {
-            Scene currentscene = SceneManager.GetActiveScene(); 
-            SceneManager.LoadScene(currentscene.name);
-        }
-        else
-        {
-            StartNewGame();
-        }
-    }
+    #endregion
 }
