@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
         PlayerController.player.gameObject.SetActive(false);
         Camera.main.GetComponent<CameraController>().TrackTarget(PlayerController.player.gameObject);
         Cursor.visible = false;
+        TimeScale = Time.timeScale;
     }
     private void Start()
     {
@@ -51,6 +52,7 @@ public class GameController : MonoBehaviour
     float newGameTime = 0;
     public int roundCount = 3;
     public float roundTime = 30;
+    public static float TimeScale = 2f;
     Coroutine runningTime;
     public void StartNewGame()
     {

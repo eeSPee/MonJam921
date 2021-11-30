@@ -71,7 +71,6 @@ public class CloneController : PlayerController
 
         SpawnTime = Time.time;
         recordstate = 0;
-        Delay(0);
         delay = 0;
         animator.SetBool("stunned", false);
     }

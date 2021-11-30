@@ -286,7 +286,7 @@ public class PlayerController : TimeCritter
         if (IsOriginal())
         {
             registermovement = false;
-            Time.timeScale = 10;
+            Time.timeScale = GameController.TimeScale * 10;
         }
     }
     public void TimeUnfreeze()
@@ -302,7 +302,7 @@ public class PlayerController : TimeCritter
         if (IsOriginal())
         {
             registermovement = true;
-            Time.timeScale = 1;
+            Time.timeScale = GameController.TimeScale;
         }
     }
     #endregion

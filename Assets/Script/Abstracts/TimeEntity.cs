@@ -18,6 +18,7 @@ public class TimeEntity : MonoBehaviour
     //  TimeImprint - stores the start values to the current values of this object
     //  TimeReset - resets the position/velocity of this objects to the values stored
 
+    public RigidbodyType2D RigidBody_Type;
     public Vector3 Start_Position;
     public Quaternion Start_Rotation;
 
@@ -37,14 +38,17 @@ public class TimeEntity : MonoBehaviour
         Start_Rotation = transform.rotation;
         StartVelocity = rigidbody.velocity;
         StartAVelocity = rigidbody.angularVelocity;
+        RigidBody_Type = rigidbody.bodyType;
     }
     public virtual void TimeReset()
     {
+        rigidbody.bodyType = RigidbodyType2D.Kinematic;
         transform.position = Start_Position;
         transform.rotation = Start_Rotation;
 
         rigidbody.velocity = StartVelocity;
         rigidbody.angularVelocity = StartAVelocity;
+        rigidbody.bodyType = RigidBody_Type;
         rigidbody.WakeUp();
     }
 }
